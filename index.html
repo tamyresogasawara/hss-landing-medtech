@@ -49,6 +49,7 @@
           <li><a href="#funcionalidades" class="nav__link">Recursos</a></li>
           <li><a href="#para-quem" class="nav__link">Para quem</a></li>
           <li><a href="#diferenciais" class="nav__link">Diferenciais</a></li>
+          <li><a href="#roi" class="nav__link">Calcular ROI</a></li>
         </ul>
       </nav>
 
@@ -410,6 +411,140 @@
     </section>
 
 
+    <!-- ========== ROI CALCULATOR ========== -->
+    <section class="section roi-section" id="roi" aria-labelledby="roi-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">Calculadora de ROI</span>
+          <h2 class="section__title" id="roi-title">Quanto a HSS pode devolver pro caixa da sua clínica?</h2>
+          <p class="section__subtitle">
+            Ajuste os números abaixo conforme a realidade da sua operação. O cálculo atualiza em tempo real, sem cadastro.
+          </p>
+        </header>
+
+        <div class="roi-grid">
+
+          <!-- INPUTS -->
+          <div class="roi-panel roi-panel--inputs">
+            <h3 class="roi-panel__title">Sua clínica hoje</h3>
+            <p class="roi-panel__caption">Use vírgula ou ponto. Os valores padrão refletem uma clínica média brasileira.</p>
+
+            <form class="roi-form" id="roiForm" novalidate>
+              <div class="roi-field">
+                <label class="roi-label" for="roi-profissionais">
+                  Profissionais ativos
+                  <span class="roi-hint" aria-hidden="true">médicos, dentistas, fisios etc.</span>
+                </label>
+                <input class="roi-input" type="number" id="roi-profissionais" name="profissionais" value="5" min="1" max="500" inputmode="numeric" />
+              </div>
+
+              <div class="roi-field">
+                <label class="roi-label" for="roi-consultas-dia">
+                  Consultas por dia (por profissional)
+                </label>
+                <input class="roi-input" type="number" id="roi-consultas-dia" name="consultasDia" value="12" min="1" max="60" inputmode="numeric" />
+              </div>
+
+              <div class="roi-field">
+                <label class="roi-label" for="roi-ticket">
+                  Ticket médio por consulta
+                  <span class="roi-hint" aria-hidden="true">valor médio recebido por atendimento</span>
+                </label>
+                <div class="roi-input-group">
+                  <span class="roi-input-prefix" aria-hidden="true">R$</span>
+                  <input class="roi-input roi-input--with-prefix" type="number" id="roi-ticket" name="ticket" value="200" min="0" step="10" inputmode="decimal" />
+                </div>
+              </div>
+
+              <div class="roi-field">
+                <label class="roi-label" for="roi-dias-mes">
+                  Dias úteis no mês
+                </label>
+                <input class="roi-input" type="number" id="roi-dias-mes" name="diasMes" value="22" min="1" max="31" inputmode="numeric" />
+              </div>
+
+              <div class="roi-field">
+                <label class="roi-label" for="roi-no-show">
+                  Taxa atual de no-show
+                  <output class="roi-slider-value" for="roi-no-show" id="roi-no-show-display" aria-live="polite">30%</output>
+                </label>
+                <input class="roi-slider" type="range" id="roi-no-show" name="noShow" value="30" min="0" max="60" step="1" aria-valuemin="0" aria-valuemax="60" />
+                <div class="roi-slider-scale" aria-hidden="true">
+                  <span>0%</span><span>30%</span><span>60%</span>
+                </div>
+              </div>
+
+              <div class="roi-field">
+                <label class="roi-label" for="roi-horas-admin">
+                  Horas/semana em tarefas administrativas manuais
+                  <span class="roi-hint" aria-hidden="true">confirmação, remarcação, cobrança, planilhas</span>
+                </label>
+                <input class="roi-input" type="number" id="roi-horas-admin" name="horasAdmin" value="20" min="0" max="200" inputmode="numeric" />
+              </div>
+
+              <div class="roi-field">
+                <label class="roi-label" for="roi-custo-hora">
+                  Custo médio por hora da equipe administrativa
+                </label>
+                <div class="roi-input-group">
+                  <span class="roi-input-prefix" aria-hidden="true">R$</span>
+                  <input class="roi-input roi-input--with-prefix" type="number" id="roi-custo-hora" name="custoHora" value="25" min="0" step="1" inputmode="decimal" />
+                </div>
+              </div>
+
+              <button type="reset" class="roi-reset" id="roiReset">Restaurar valores padrão</button>
+            </form>
+          </div>
+
+
+          <!-- OUTPUTS -->
+          <div class="roi-panel roi-panel--outputs" aria-live="polite" aria-atomic="true">
+            <h3 class="roi-panel__title">Seu potencial com a HSS</h3>
+            <p class="roi-panel__caption">Premissas: redução de 60% no no-show via Recall com IA; redução de 60% nas tarefas administrativas via automação.</p>
+
+            <div class="roi-result roi-result--loss">
+              <span class="roi-result__label">Você está perdendo hoje</span>
+              <span class="roi-result__value" id="roi-perda-mensal">R$ 0</span>
+              <span class="roi-result__hint">por mês — em receita de no-show e custo administrativo manual</span>
+            </div>
+
+            <div class="roi-result roi-result--gain roi-result--hero">
+              <span class="roi-result__label">A HSS te devolve</span>
+              <span class="roi-result__value" id="roi-recuperado-mensal">R$ 0</span>
+              <span class="roi-result__hint">por mês</span>
+            </div>
+
+            <div class="roi-result roi-result--annual">
+              <span class="roi-result__label">No primeiro ano</span>
+              <span class="roi-result__value" id="roi-recuperado-anual">R$ 0</span>
+              <span class="roi-result__hint">de receita recuperada e custo evitado</span>
+            </div>
+
+            <!-- Visual comparison bars -->
+            <div class="roi-chart" role="img" aria-labelledby="roi-chart-label">
+              <div class="roi-chart__label" id="roi-chart-label">Comparação visual: perda atual vs ganho mensal com HSS</div>
+              <div class="roi-chart__row">
+                <span class="roi-chart__caption">Perda atual</span>
+                <div class="roi-chart__bar roi-chart__bar--loss" id="roi-bar-perda" style="width: 0%;"></div>
+              </div>
+              <div class="roi-chart__row">
+                <span class="roi-chart__caption">Ganho com HSS</span>
+                <div class="roi-chart__bar roi-chart__bar--gain" id="roi-bar-gain" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <a href="#contato" class="btn btn--primary btn--full roi-cta">Quero esses números na minha clínica</a>
+          </div>
+
+        </div>
+
+        <p class="roi-disclaimer">
+          Esta calculadora apresenta uma estimativa. Os ganhos reais variam conforme adesão da equipe, perfil dos pacientes e implementação. Os percentuais de redução são baseados em médias observadas em clínicas similares.
+        </p>
+      </div>
+    </section>
+
+
     <!-- ========== CTA + FORM ========== -->
     <section class="section cta-section" id="contato">
       <div class="container">
@@ -659,6 +794,95 @@
           toggle.setAttribute("aria-expanded", "false");
         });
       });
+    })();
+
+    // ROI Calculator — recalcula em tempo real conforme o usuário ajusta
+    (function () {
+      const form = document.getElementById("roiForm");
+      if (!form) return;
+
+      // Premissas (claims da HSS)
+      const REDUCAO_NOSHOW = 0.6;   // Recall com IA reduz no-show em 60%
+      const REDUCAO_ADMIN = 0.6;    // Automação reduz tarefas administrativas em 60%
+      const SEMANAS_POR_MES = 4;
+
+      const fmtBRL = new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+        maximumFractionDigits: 0,
+      });
+
+      const els = {
+        profissionais: document.getElementById("roi-profissionais"),
+        consultasDia: document.getElementById("roi-consultas-dia"),
+        ticket: document.getElementById("roi-ticket"),
+        diasMes: document.getElementById("roi-dias-mes"),
+        noShow: document.getElementById("roi-no-show"),
+        noShowDisplay: document.getElementById("roi-no-show-display"),
+        horasAdmin: document.getElementById("roi-horas-admin"),
+        custoHora: document.getElementById("roi-custo-hora"),
+        perdaMensal: document.getElementById("roi-perda-mensal"),
+        recuperadoMensal: document.getElementById("roi-recuperado-mensal"),
+        recuperadoAnual: document.getElementById("roi-recuperado-anual"),
+        barPerda: document.getElementById("roi-bar-perda"),
+        barGain: document.getElementById("roi-bar-gain"),
+      };
+
+      function num(el, fallback) {
+        const v = parseFloat(el.value);
+        return Number.isFinite(v) && v >= 0 ? v : fallback;
+      }
+
+      function calculate() {
+        const profissionais = num(els.profissionais, 0);
+        const consultasDia = num(els.consultasDia, 0);
+        const ticket = num(els.ticket, 0);
+        const diasMes = num(els.diasMes, 0);
+        const noShowPct = Math.min(num(els.noShow, 0), 100) / 100;
+        const horasAdmin = num(els.horasAdmin, 0);
+        const custoHora = num(els.custoHora, 0);
+
+        // Receita potencial mensal se nenhum paciente faltasse
+        const receitaPotencialMensal = profissionais * consultasDia * ticket * diasMes;
+
+        // Receita perdida hoje devido ao no-show
+        const perdaNoShowMensal = receitaPotencialMensal * noShowPct;
+
+        // Custo administrativo manual mensal
+        const custoAdminMensal = horasAdmin * SEMANAS_POR_MES * custoHora;
+
+        // Total perdido hoje (no-show + custo administrativo)
+        const perdaTotalMensal = perdaNoShowMensal + custoAdminMensal;
+
+        // Recuperações com a HSS
+        const recuperadoNoShow = perdaNoShowMensal * REDUCAO_NOSHOW;
+        const economiaAdmin = custoAdminMensal * REDUCAO_ADMIN;
+        const recuperadoMensal = recuperadoNoShow + economiaAdmin;
+        const recuperadoAnual = recuperadoMensal * 12;
+
+        // Atualiza display
+        els.noShowDisplay.textContent = Math.round(noShowPct * 100) + "%";
+        els.perdaMensal.textContent = fmtBRL.format(perdaTotalMensal);
+        els.recuperadoMensal.textContent = fmtBRL.format(recuperadoMensal);
+        els.recuperadoAnual.textContent = fmtBRL.format(recuperadoAnual);
+
+        // Barras proporcionais (a maior fica em 100%, a outra escalonada)
+        const max = Math.max(perdaTotalMensal, recuperadoMensal, 1);
+        els.barPerda.style.width = (perdaTotalMensal / max) * 100 + "%";
+        els.barGain.style.width = (recuperadoMensal / max) * 100 + "%";
+      }
+
+      // Recalcula em qualquer mudança
+      form.addEventListener("input", calculate);
+
+      // Reset volta aos defaults e recalcula
+      form.addEventListener("reset", () => {
+        // setTimeout porque reset() limpa os values antes do listener rodar
+        setTimeout(calculate, 0);
+      });
+
+      // Cálculo inicial
+      calculate();
     })();
 
     // Lead form — Formspree integration with accessible UX
