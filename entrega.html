@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>HSS — Entrega Fase 1 — MedTech Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================
+       PRINT-OPTIMIZED DOCUMENT STYLES
+       Open in Chrome → Cmd+P → Salvar como PDF
+       ========================================== */
+
+    @page {
+      size: A4;
+      margin: 18mm 16mm 20mm 16mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    :root {
+      --primary: #0a4d68;
+      --primary-dark: #073b51;
+      --primary-light: #088395;
+      --accent: #5dbea3;
+      --accent-light: #b8e5d6;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-soft: #64748b;
+      --border: #e2e8f0;
+      --bg-soft: #f7fafc;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: var(--text);
+      background: #fff;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 18pt;
+      color: var(--primary);
+      margin-bottom: 10pt;
+      padding-bottom: 6pt;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 13pt;
+      color: var(--primary-dark);
+      margin-top: 14pt;
+      margin-bottom: 6pt;
+    }
+
+    h4 {
+      font-size: 11pt;
+      font-weight: 600;
+      margin-top: 10pt;
+      margin-bottom: 4pt;
+      color: var(--text);
+    }
+
+    p {
+      margin-bottom: 8pt;
+      color: var(--text-muted);
+    }
+
+    strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    ul, ol {
+      margin-left: 18pt;
+      margin-bottom: 10pt;
+    }
+
+    li {
+      margin-bottom: 4pt;
+      color: var(--text-muted);
+    }
+
+    a {
+      color: var(--primary-light);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    /* ---------- COVER ---------- */
+    .cover {
+      height: 257mm; /* A4 minus margins-ish */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      page-break-after: always;
+      position: relative;
+      padding: 40pt;
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 8pt;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+    }
+
+    .cover__brand {
+      display: flex;
+      align-items: center;
+      gap: 10pt;
+      margin-bottom: 50pt;
+    }
+
+    .cover__mark {
+      width: 44pt;
+      height: 44pt;
+      border-radius: 8pt;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-family: "Plus Jakarta Sans";
+      font-weight: 800;
+      font-size: 22pt;
+    }
+
+    .cover__brand-name {
+      font-family: "Plus Jakarta Sans";
+      font-weight: 800;
+      font-size: 22pt;
+      color: var(--primary);
+    }
+
+    .cover__eyebrow {
+      font-size: 10pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--primary-light);
+      margin-bottom: 14pt;
+    }
+
+    .cover__title {
+      font-size: 36pt;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 16pt;
+      letter-spacing: -0.02em;
+    }
+
+    .cover__title span {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .cover__subtitle {
+      font-size: 14pt;
+      color: var(--text-muted);
+      max-width: 480pt;
+      margin-bottom: 60pt;
+      line-height: 1.45;
+    }
+
+    .cover__meta {
+      border-top: 1px solid var(--border);
+      padding-top: 24pt;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16pt;
+    }
+
+    .cover__meta-block h4 {
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-soft);
+      font-weight: 600;
+      margin-bottom: 4pt;
+      margin-top: 0;
+    }
+
+    .cover__meta-block p {
+      font-size: 11pt;
+      color: var(--text);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    /* ---------- CONTENT SECTIONS ---------- */
+    section {
+      margin-bottom: 24pt;
+      page-break-inside: auto;
+    }
+
+    .page-break {
+      page-break-after: always;
+    }
+
+    .lead {
+      font-size: 11.5pt;
+      color: var(--text-muted);
+      margin-bottom: 14pt;
+      line-height: 1.55;
+    }
+
+    /* ---------- COLOR PALETTE ---------- */
+    .palette {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10pt;
+      margin-top: 10pt;
+      margin-bottom: 14pt;
+    }
+
+    .swatch {
+      border: 1px solid var(--border);
+      border-radius: 6pt;
+      overflow: hidden;
+    }
+
+    .swatch__color {
+      height: 50pt;
+    }
+
+    .swatch__meta {
+      padding: 8pt 10pt;
+      background: #fff;
+    }
+
+    .swatch__name {
+      font-size: 9pt;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2pt;
+    }
+
+    .swatch__hex {
+      font-family: "Inter";
+      font-size: 8.5pt;
+      color: var(--text-soft);
+    }
+
+    /* ---------- TYPOGRAPHY SAMPLE ---------- */
+    .type-sample {
+      border: 1px solid var(--border);
+      border-radius: 6pt;
+      padding: 14pt;
+      margin: 10pt 0;
+      background: var(--bg-soft);
+    }
+
+    .type-sample__label {
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-soft);
+      margin-bottom: 6pt;
+    }
+
+    .type-sample__heading {
+      font-family: "Plus Jakarta Sans";
+      font-weight: 800;
+      font-size: 22pt;
+      color: var(--text);
+      margin-bottom: 4pt;
+    }
+
+    .type-sample__body {
+      font-family: "Inter";
+      font-size: 10.5pt;
+      color: var(--text-muted);
+    }
+
+    /* ---------- SECTION CARDS ---------- */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12pt;
+      margin: 12pt 0;
+    }
+
+    .info-card {
+      background: var(--bg-soft);
+      border-left: 3px solid var(--primary);
+      border-radius: 4pt;
+      padding: 12pt 14pt;
+    }
+
+    .info-card h4 {
+      margin: 0 0 4pt 0;
+      color: var(--primary);
+    }
+
+    .info-card p {
+      font-size: 9.5pt;
+      margin: 0;
+    }
+
+    /* ---------- ACCESS BLOCK ---------- */
+    .access-block {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
+      color: #fff;
+      padding: 24pt;
+      border-radius: 8pt;
+      margin: 14pt 0;
+    }
+
+    .access-block h3 {
+      color: #fff;
+      margin-top: 0;
+      font-size: 16pt;
+    }
+
+    .access-block p {
+      color: rgba(255,255,255,0.85);
+      font-size: 10.5pt;
+      margin-bottom: 14pt;
+    }
+
+    .access-block .link-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8pt;
+      margin-bottom: 8pt;
+    }
+
+    .access-block .link-row strong {
+      color: var(--accent-light);
+      min-width: 90pt;
+      font-size: 9.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .access-block a {
+      color: #fff;
+      text-decoration: underline;
+      font-size: 11pt;
+      word-break: break-all;
+    }
+
+    /* ---------- TOC ---------- */
+    .toc {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 6pt;
+      padding: 16pt 20pt;
+      margin: 14pt 0 20pt 0;
+    }
+
+    .toc__title {
+      font-family: "Plus Jakarta Sans";
+      font-weight: 700;
+      font-size: 11pt;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      margin-bottom: 10pt;
+    }
+
+    .toc__list {
+      list-style: none;
+      margin: 0;
+    }
+
+    .toc__list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 4pt 0;
+      border-bottom: 1px dotted var(--border);
+      font-size: 10pt;
+      color: var(--text);
+    }
+
+    .toc__list li:last-child {
+      border-bottom: none;
+    }
+
+    .toc__list .num {
+      color: var(--primary-light);
+      font-weight: 600;
+      margin-right: 8pt;
+    }
+
+    /* ---------- FOOTER NOTE ---------- */
+    .doc-footer {
+      margin-top: 30pt;
+      padding-top: 12pt;
+      border-top: 1px solid var(--border);
+      font-size: 8.5pt;
+      color: var(--text-soft);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== COVER ========== -->
+  <div class="cover">
+    <div class="cover__brand">
+      <span class="cover__mark">H</span>
+      <span class="cover__brand-name">HSS</span>
+    </div>
+
+    <div>
+      <div class="cover__eyebrow">MedTech Challenge — Fase 1</div>
+      <h1 class="cover__title">Health Sync Solutions:<br><span>gestão integrada para clínicas.</span></h1>
+      <p class="cover__subtitle">
+        Protótipo navegável da landing page B2B da HSS — uma plataforma que centraliza agenda, prontuário, financeiro e relacionamento com paciente em um único sistema.
+      </p>
+    </div>
+
+    <div class="cover__meta">
+      <div class="cover__meta-block">
+        <h4>Integrante</h4>
+        <p>Tamyres Ogasawara Macedo</p>
+        <p style="font-size: 9.5pt; color: var(--text-soft); margin-top: 2pt;">RM 552055</p>
+      </div>
+      <div class="cover__meta-block">
+        <h4>Entrega</h4>
+        <p>Fase 1 — Protótipo de Landing Page</p>
+        <p style="font-size: 9.5pt; color: var(--text-soft); margin-top: 2pt;">09 de maio de 2026</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========== TOC + INTRO ========== -->
+  <section>
+    <h2>Sumário</h2>
+    <div class="toc">
+      <ol class="toc__list">
+        <li><span><span class="num">1.</span> Sobre a solução</span><span>03</span></li>
+        <li><span><span class="num">2.</span> Identidade visual</span><span>04</span></li>
+        <li><span><span class="num">3.</span> Estrutura da landing page</span><span>05</span></li>
+        <li><span><span class="num">4.</span> Decisões técnicas</span><span>07</span></li>
+        <li><span><span class="num">5.</span> Acesso ao protótipo</span><span>08</span></li>
+      </ol>
+    </div>
+
+    <p class="lead">
+      Este documento acompanha a entrega do protótipo da landing page da Health Sync Solutions (HSS), referente à Fase 1 do MedTech Challenge. O protótipo está disponível online via GitHub Pages e o código-fonte é público — ambos os links estão na seção 5.
+    </p>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 1. SOBRE A SOLUÇÃO ========== -->
+  <section>
+    <h2>1. Sobre a solução</h2>
+
+    <h3>O problema</h3>
+    <p>
+      A maior parte das clínicas de pequeno e médio porte no Brasil ainda opera com uma colcha de retalhos de planilhas, mensagens de WhatsApp e softwares legados que não se comunicam entre si. Esse cenário gera três dores principais:
+    </p>
+    <ul>
+      <li><strong>Agenda fragmentada:</strong> equipes gastam horas todos os dias confirmando consultas manualmente, e ainda assim erros de overbooking acontecem.</li>
+      <li><strong>Taxa de no-show elevada:</strong> em média, 30% dos pacientes faltam à consulta sem aviso prévio. Cada ausência representa receita perdida e tempo ocioso.</li>
+      <li><strong>Decisões no escuro:</strong> indicadores operacionais e financeiros vivem espalhados em sistemas distintos, impedindo gestão baseada em dados.</li>
+    </ul>
+
+    <h3>A proposta da HSS</h3>
+    <p>
+      A Health Sync Solutions é uma plataforma B2B SaaS que reúne <strong>seis módulos integrados</strong> — agenda inteligente, prontuário eletrônico, portal do paciente, financeiro, recall com IA e dashboard de gestão — em uma única interface. A premissa é eliminar a complexidade técnica para o gestor da clínica, entregando uma operação centralizada e em conformidade com a LGPD desde o primeiro dia.
+    </p>
+
+    <h3>O diferencial disruptivo</h3>
+    <div class="info-card" style="border-left-color: var(--accent-dark, #3fa688); background: var(--accent-light);">
+      <h4 style="color: var(--primary-dark);">Recall com IA — redução de no-show em até 60%</h4>
+      <p style="color: var(--primary-dark);">
+        O algoritmo da HSS analisa o histórico de comportamento de cada paciente (faltas anteriores, horário das consultas, especialidade, perfil socioeconômico) e identifica os mais propensos a faltar. Para esses pacientes, dispara lembretes personalizados via WhatsApp na janela de tempo ideal. É a solução do problema que mais machuca o caixa das clínicas, atacado de forma inteligente.
+      </p>
+    </div>
+
+    <h3>Público-alvo (B2B)</h3>
+    <div class="grid-2">
+      <div class="info-card">
+        <h4>Consultórios independentes</h4>
+        <p>Profissionais autônomos que querem profissionalizar a gestão sem contratar TI.</p>
+      </div>
+      <div class="info-card">
+        <h4>Clínicas multi-especialidade</h4>
+        <p>Coordenação fluida entre especialistas, com prontuário unificado por paciente.</p>
+      </div>
+      <div class="info-card" style="grid-column: span 2;">
+        <h4>Pequenas redes e franquias</h4>
+        <p>Visão consolidada de várias unidades, com permissões granulares e dashboards comparativos. A HSS escala de uma sala a uma rede de unidades sem mudança de plataforma.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 2. IDENTIDADE VISUAL ========== -->
+  <section>
+    <h2>2. Identidade visual</h2>
+
+    <p class="lead">
+      A identidade visual da HSS busca transmitir <strong>credibilidade clínica</strong> e <strong>modernidade tecnológica</strong>, evitando o visual estéril de softwares hospitalares tradicionais e a leveza excessiva de aplicativos de bem-estar. O tom é sério mas acolhedor — health-tech B2B madura.
+    </p>
+
+    <h3>Paleta de cores</h3>
+    <div class="palette">
+      <div class="swatch">
+        <div class="swatch__color" style="background: #0a4d68;"></div>
+        <div class="swatch__meta">
+          <div class="swatch__name">Primary</div>
+          <div class="swatch__hex">#0A4D68</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: #088395;"></div>
+        <div class="swatch__meta">
+          <div class="swatch__name">Primary Light</div>
+          <div class="swatch__hex">#088395</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: #5dbea3;"></div>
+        <div class="swatch__meta">
+          <div class="swatch__name">Accent</div>
+          <div class="swatch__hex">#5DBEA3</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: #b8e5d6;"></div>
+        <div class="swatch__meta">
+          <div class="swatch__name">Accent Light</div>
+          <div class="swatch__hex">#B8E5D6</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: #ffffff; border: 1px solid var(--border);"></div>
+        <div class="swatch__meta">
+          <div class="swatch__name">Background</div>
+          <div class="swatch__hex">#FFFFFF</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: #f7fafc;"></div>
+        <div class="swatch__meta">
+          <div class="swatch__name">Background Soft</div>
+          <div class="swatch__hex">#F7FAFC</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: #0f172a;"></div>
+        <div class="swatch__meta">
+          <div class="swatch__name">Texto principal</div>
+          <div class="swatch__hex">#0F172A</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__color" style="background: #475569;"></div>
+        <div class="swatch__meta">
+          <div class="swatch__name">Texto secundário</div>
+          <div class="swatch__hex">#475569</div>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      O <strong>azul-petróleo</strong> evoca confiança, profissionalismo e o universo médico tradicional. O <strong>verde-menta</strong> traz vitalidade e sensação de bem-estar, contrabalanceando a seriedade do azul. O branco como cor primária garante clareza visual e respiração — essencial para uma interface usada várias horas por dia em ambiente clínico.
+    </p>
+
+    <h3>Tipografia</h3>
+
+    <div class="type-sample">
+      <div class="type-sample__label">Plus Jakarta Sans · Títulos</div>
+      <div class="type-sample__heading">Sua clínica, em um só lugar</div>
+    </div>
+
+    <div class="type-sample">
+      <div class="type-sample__label">Inter · Corpo de texto</div>
+      <div class="type-sample__body">
+        A HSS reúne tudo o que sua clínica precisa para operar com excelência — em uma única tela, com a segurança que a LGPD exige e a inteligência que o seu negócio merece.
+      </div>
+    </div>
+
+    <p>
+      A combinação <strong>Plus Jakarta Sans</strong> (títulos) + <strong>Inter</strong> (corpo) entrega contraste sem ruído. Plus Jakarta tem personalidade geométrica que destaca títulos sem virar decorativa; Inter é a referência de legibilidade em interfaces digitais. Ambas têm múltiplos pesos disponíveis e suportam acentuação completa em português.
+    </p>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 3. ESTRUTURA DA LANDING ========== -->
+  <section>
+    <h2>3. Estrutura da landing page</h2>
+
+    <p class="lead">
+      A landing está dividida em <strong>oito seções</strong>, organizadas em uma narrativa que parte do problema, apresenta a solução, detalha funcionalidades, qualifica o público, prova credibilidade e converte com formulário de captação.
+    </p>
+
+    <h3>3.1 Hero</h3>
+    <p>
+      Primeira dobra da página. Headline objetiva ("A gestão da sua clínica, finalmente em um lugar só") seguida de subheadline explicativa, dois CTAs (primário "Agendar demonstração", secundário "Ver como funciona") e três selos de confiança (LGPD, setup em 48h, suporte 7 dias). Acompanhada de mockup visual de dashboard que prova a solução já no primeiro segundo.
+    </p>
+
+    <h3>3.2 Problema</h3>
+    <p>
+      Três cards apresentando as dores principais: agenda caótica, no-show que sangra a receita, decisões no escuro. O objetivo é provocar identificação imediata do gestor da clínica antes de apresentar a solução.
+    </p>
+
+    <h3>3.3 Solução</h3>
+    <p>
+      Apresentação dos três pilares conceituais: <strong>Centralize</strong>, <strong>Automatize</strong>, <strong>Otimize</strong>. Cada pilar com ícone próprio e descrição curta. É a transição emocional do problema para a esperança.
+    </p>
+
+    <h3>3.4 Funcionalidades</h3>
+    <p>
+      Seis cards detalhando os módulos do produto: Agenda Inteligente, Prontuário Eletrônico, Portal do Paciente, Financeiro Integrado, Recall com IA (marcado com badge "Disrupção") e Dashboard de Gestão. Aqui o lead técnico vê concretamente o que vai receber.
+    </p>
+
+    <h3>3.5 Para quem</h3>
+    <p>
+      Três personas B2B segmentadas: Consultórios e clínicas independentes, Clínicas multi-especialidade, Pequenas redes e franquias. Cada uma com 3 benefícios específicos. O objetivo é que cada lead se reconheça na seção certa.
+    </p>
+
+    <h3>3.6 Diferenciais</h3>
+    <p>
+      Quatro cards com números de destaque (100% LGPD, 48h setup, 7 dias de suporte, atualizações ∞). Linguagem direta, números grandes — formato pensado para ser absorvido em segundos.
+    </p>
+
+    <h3>3.7 CTA + Formulário</h3>
+    <p>
+      Seção em fundo escuro (cor primária) com o formulário de captação à direita e benefícios da demo à esquerda. Campos solicitados: nome, e-mail, telefone, clínica, cargo, número de profissionais, mensagem e checkbox de consentimento LGPD. Validação HTML5 nativa — sem backend nesta fase.
+    </p>
+
+    <h3>3.8 Footer</h3>
+    <p>
+      Quatro colunas: marca + tagline, produto, empresa, legal. Links para LGPD, política de privacidade e termos. Ícones de redes sociais (LinkedIn, Instagram, YouTube). Copyright 2026.
+    </p>
+
+    <h3>Hierarquia da informação</h3>
+    <p>
+      Cada seção segue o padrão <strong>eyebrow → título → subtítulo → conteúdo</strong>. O <em>eyebrow</em> (rótulo curto em maiúsculas) ancora a seção contextualmente, o título carrega a mensagem principal, o subtítulo amplifica e o conteúdo entrega valor. Essa hierarquia consistente reduz a carga cognitiva e permite leitura por escaneamento.
+    </p>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 4. DECISÕES TÉCNICAS ========== -->
+  <section>
+    <h2>4. Decisões técnicas</h2>
+
+    <h3>Stack: HTML semântico + CSS puro</h3>
+    <p>
+      Optou-se por <strong>HTML5 semântico e CSS puro</strong>, sem frameworks (React, Tailwind, Bootstrap). Justificativas:
+    </p>
+    <ul>
+      <li><strong>Zero setup:</strong> qualquer integrante do grupo pode abrir o projeto e contribuir sem instalar Node ou rodar build steps.</li>
+      <li><strong>Performance:</strong> o site carrega em milissegundos, sem JavaScript bloqueante.</li>
+      <li><strong>Compatibilidade total:</strong> funciona em qualquer navegador moderno sem polyfills.</li>
+      <li><strong>Migração futura:</strong> a estrutura está organizada de forma que a Fase 2 pode plugar Tailwind, React ou outro framework sem reescrever do zero.</li>
+    </ul>
+
+    <h3>Organização do CSS</h3>
+    <p>
+      O CSS está dividido em quatro arquivos modulares: <strong>reset.css</strong> (normalização cross-browser), <strong>variables.css</strong> (design tokens centralizados via CSS Custom Properties), <strong>base.css</strong> (tipografia e layout primitives) e <strong>components.css</strong> (header, hero, cards, formulário, footer). Trocar uma cor da identidade visual exige editar uma única linha em <code>variables.css</code>.
+    </p>
+
+    <h3>Responsividade mobile-first</h3>
+    <p>
+      Layout pensado primeiro para tela pequena, com breakpoints em <strong>1024px</strong> (tablet/laptop), <strong>880px</strong> (transição para coluna única), <strong>720px</strong> (ativação do menu hamburguer) e <strong>480px</strong> (ajustes finais). Testado em Chrome, Safari e Firefox.
+    </p>
+
+    <h3>Acessibilidade</h3>
+    <ul>
+      <li>HTML semântico (<code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>footer</code>)</li>
+      <li>Atributos <code>aria-label</code> e <code>aria-expanded</code> em elementos interativos</li>
+      <li>Hierarquia de headings consistente (h1 → h2 → h3 → h4)</li>
+      <li>Foco visual preservado em campos de formulário</li>
+      <li>Contraste de cores conforme WCAG AA</li>
+    </ul>
+
+    <h3>JavaScript mínimo</h3>
+    <p>
+      Apenas dois pequenos blocos inline, sem dependências externas: toggle do menu mobile (com gestão de estado <code>aria-expanded</code>) e handler do formulário (validação HTML5 + alerta de confirmação, sem backend nesta fase). Total: ~25 linhas.
+    </p>
+
+    <h3>Navegação entre seções</h3>
+    <p>
+      Anchor links no header apontam para <code>id</code> de cada seção. <code>scroll-behavior: smooth</code> aplicado via CSS garante a transição suave sem precisar de JavaScript. A propriedade <code>scroll-margin-top</code> compensa o header fixo, evitando que títulos fiquem cortados.
+    </p>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 5. ACESSO AO PROTÓTIPO ========== -->
+  <section>
+    <h2>5. Acesso ao protótipo</h2>
+
+    <p class="lead">
+      O protótipo está publicado no GitHub Pages e o código-fonte é público no GitHub. Recomenda-se a visualização ao vivo para experienciar a navegação, a responsividade e as interações.
+    </p>
+
+    <div class="access-block">
+      <h3>Links de acesso</h3>
+      <p>Disponível em qualquer navegador moderno, desktop ou mobile.</p>
+
+      <div class="link-row">
+        <strong>Landing ao vivo:</strong>
+        <a href="https://tamyresogasawara.github.io/hss-landing-medtech/">https://tamyresogasawara.github.io/hss-landing-medtech/</a>
+      </div>
+      <div class="link-row">
+        <strong>Repositório:</strong>
+        <a href="https://github.com/tamyresogasawara/hss-landing-medtech">https://github.com/tamyresogasawara/hss-landing-medtech</a>
+      </div>
+    </div>
+
+    <h3>Como navegar</h3>
+    <ol>
+      <li>Abra o link da landing ao vivo em qualquer navegador moderno.</li>
+      <li>Use o menu superior (ou hamburguer no mobile) para navegar entre as seções.</li>
+      <li>Teste a responsividade redimensionando a janela ou abrindo no celular.</li>
+      <li>Preencha o formulário ao final para testar a validação. Nesta fase, o formulário não envia dados reais — apenas exibe uma mensagem de confirmação.</li>
+    </ol>
+
+    <h3>Como rodar localmente</h3>
+    <p>Caso queira inspecionar o código localmente, basta clonar o repositório e abrir o <code>index.html</code> em qualquer navegador:</p>
+    <p style="font-family: monospace; background: var(--bg-soft); padding: 8pt 12pt; border-radius: 4pt; font-size: 9pt; color: var(--text);">
+      git clone https://github.com/tamyresogasawara/hss-landing-medtech.git<br>
+      cd hss-landing-medtech<br>
+      open index.html
+    </p>
+
+    <h3>Critérios de avaliação atendidos</h3>
+    <ul>
+      <li><strong>Clareza na estrutura e hierarquia da informação:</strong> 8 seções com padrão eyebrow → título → subtítulo → conteúdo.</li>
+      <li><strong>Coerência da identidade visual com o universo de health tech:</strong> paleta azul/verde/branco, tipografia moderna e tom visual sério-acolhedor.</li>
+      <li><strong>Qualidade e organização do conteúdo:</strong> copy persuasivo voltado a B2B, organizado em narrativa problema → solução → prova → conversão.</li>
+      <li><strong>Presença do formulário de captação de lead:</strong> formulário completo na seção de CTA, com validação HTML5 e checkbox de consentimento LGPD.</li>
+      <li><strong>Navegação funcional entre seções:</strong> anchor links no menu com smooth scroll nativo via CSS.</li>
+      <li><strong>Solução disruptiva:</strong> Recall com IA para redução de no-show — abordagem inédita no mercado SMB de gestão de clínicas, atacando o problema que mais impacta o caixa.</li>
+    </ul>
+
+    <div class="doc-footer">
+      HSS — Health Sync Solutions · MedTech Challenge Fase 1 · Tamyres Ogasawara Macedo (RM 552055)
+    </div>
+  </section>
+
+</body>
+</html>
