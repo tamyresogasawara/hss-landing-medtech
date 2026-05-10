@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>HSS — Entrega Etapa 2 — MedTech Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================
+       PRINT-OPTIMIZED DOCUMENT STYLES
+       Open in Chrome → Cmd+P → Save as PDF
+       ========================================== */
+
+    @page {
+      size: A4;
+      margin: 18mm 16mm 20mm 16mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    :root {
+      --primary: #0a4d68;
+      --primary-dark: #073b51;
+      --primary-light: #088395;
+      --accent: #5dbea3;
+      --accent-dark: #3fa688;
+      --accent-light: #b8e5d6;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-soft: #64748b;
+      --border: #e2e8f0;
+      --bg-soft: #f7fafc;
+      --success: #10b981;
+      --success-bg: #d1fae5;
+    }
+
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: var(--text);
+      background: #fff;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 18pt;
+      color: var(--primary);
+      margin-bottom: 10pt;
+      padding-bottom: 6pt;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 13pt;
+      color: var(--primary-dark);
+      margin-top: 16pt;
+      margin-bottom: 6pt;
+    }
+
+    h4 {
+      font-size: 11pt;
+      font-weight: 600;
+      margin-top: 10pt;
+      margin-bottom: 4pt;
+      color: var(--text);
+    }
+
+    p { margin-bottom: 8pt; color: var(--text-muted); }
+    strong { color: var(--text); font-weight: 600; }
+
+    ul, ol { margin-left: 18pt; margin-bottom: 10pt; }
+    li { margin-bottom: 4pt; color: var(--text-muted); }
+
+    a {
+      color: var(--primary-light);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 9pt;
+      background: var(--bg-soft);
+      padding: 1pt 5pt;
+      border-radius: 3pt;
+      color: var(--primary-dark);
+    }
+
+    /* ---------- COVER ---------- */
+    .cover {
+      height: 257mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      page-break-after: always;
+      position: relative;
+      padding: 40pt;
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 8pt;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+    }
+
+    .cover__brand {
+      display: flex;
+      align-items: center;
+      gap: 10pt;
+      margin-bottom: 50pt;
+    }
+
+    .cover__mark {
+      width: 44pt;
+      height: 44pt;
+      border-radius: 8pt;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-family: "Plus Jakarta Sans";
+      font-weight: 800;
+      font-size: 22pt;
+    }
+
+    .cover__brand-name {
+      font-family: "Plus Jakarta Sans";
+      font-weight: 800;
+      font-size: 22pt;
+      color: var(--primary);
+    }
+
+    .cover__eyebrow {
+      font-size: 10pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--primary-light);
+      margin-bottom: 14pt;
+    }
+
+    .cover__title {
+      font-size: 36pt;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 16pt;
+      letter-spacing: -0.02em;
+    }
+
+    .cover__title span {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .cover__subtitle {
+      font-size: 14pt;
+      color: var(--text-muted);
+      max-width: 480pt;
+      margin-bottom: 60pt;
+      line-height: 1.45;
+    }
+
+    .cover__meta {
+      border-top: 1px solid var(--border);
+      padding-top: 24pt;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16pt;
+    }
+
+    .cover__meta-block h4 {
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-soft);
+      font-weight: 600;
+      margin-bottom: 4pt;
+      margin-top: 0;
+    }
+
+    .cover__meta-block p {
+      font-size: 11pt;
+      color: var(--text);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    /* ---------- CONTENT SECTIONS ---------- */
+    section { margin-bottom: 24pt; page-break-inside: auto; }
+    .page-break { page-break-after: always; }
+
+    .lead {
+      font-size: 11.5pt;
+      color: var(--text-muted);
+      margin-bottom: 14pt;
+      line-height: 1.55;
+    }
+
+    /* ---------- TOC ---------- */
+    .toc {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 6pt;
+      padding: 16pt 20pt;
+      margin: 14pt 0 20pt 0;
+    }
+
+    .toc__title {
+      font-family: "Plus Jakarta Sans";
+      font-weight: 700;
+      font-size: 11pt;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      margin-bottom: 10pt;
+    }
+
+    .toc__list { list-style: none; margin: 0; }
+
+    .toc__list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 4pt 0;
+      border-bottom: 1px dotted var(--border);
+      font-size: 10pt;
+      color: var(--text);
+    }
+
+    .toc__list li:last-child { border-bottom: none; }
+
+    .toc__list .num {
+      color: var(--primary-light);
+      font-weight: 600;
+      margin-right: 8pt;
+    }
+
+    /* ---------- ACCESS BLOCK ---------- */
+    .access-block {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
+      color: #fff;
+      padding: 24pt;
+      border-radius: 8pt;
+      margin: 14pt 0;
+    }
+
+    .access-block h3 {
+      color: #fff;
+      margin-top: 0;
+      font-size: 16pt;
+    }
+
+    .access-block p {
+      color: rgba(255,255,255,0.85);
+      font-size: 10.5pt;
+      margin-bottom: 14pt;
+    }
+
+    .access-block .link-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8pt;
+      margin-bottom: 8pt;
+    }
+
+    .access-block .link-row strong {
+      color: var(--accent-light);
+      min-width: 90pt;
+      font-size: 9.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .access-block a {
+      color: #fff;
+      text-decoration: underline;
+      font-size: 11pt;
+      word-break: break-all;
+    }
+
+    /* ---------- INFO CARDS ---------- */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12pt;
+      margin: 12pt 0;
+    }
+
+    .info-card {
+      background: var(--bg-soft);
+      border-left: 3px solid var(--primary);
+      border-radius: 4pt;
+      padding: 12pt 14pt;
+    }
+
+    .info-card h4 {
+      margin: 0 0 4pt 0;
+      color: var(--primary);
+    }
+
+    .info-card p {
+      font-size: 9.5pt;
+      margin: 0;
+    }
+
+    /* ---------- HIGHLIGHT (NEW IN ETAPA 2) ---------- */
+    .new-badge {
+      display: inline-block;
+      padding: 2pt 6pt;
+      background: var(--success-bg);
+      color: #047857;
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 3pt;
+      margin-left: 6pt;
+      vertical-align: middle;
+    }
+
+    /* ---------- CRITERIA TABLE ---------- */
+    .criteria-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10pt;
+      font-size: 9.5pt;
+    }
+
+    .criteria-table th {
+      background: var(--primary);
+      color: #fff;
+      text-align: left;
+      padding: 8pt 10pt;
+      font-weight: 600;
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .criteria-table td {
+      padding: 8pt 10pt;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .criteria-table .check {
+      color: var(--success);
+      font-weight: 700;
+      font-size: 11pt;
+      text-align: center;
+      width: 30pt;
+    }
+
+    /* ---------- A11Y / FORM CARDS ---------- */
+    .a11y-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10pt;
+      margin: 12pt 0;
+    }
+
+    .a11y-card {
+      border: 1px solid var(--border);
+      border-radius: 6pt;
+      padding: 12pt 14pt;
+    }
+
+    .a11y-card h4 {
+      margin: 0 0 4pt 0;
+      color: var(--primary);
+      font-size: 10pt;
+    }
+
+    .a11y-card p {
+      font-size: 9pt;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ---------- BREAKPOINT TABLE ---------- */
+    .bp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin: 10pt 0;
+    }
+
+    .bp-table th, .bp-table td {
+      padding: 6pt 10pt;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .bp-table th {
+      background: var(--bg-soft);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .bp-table td:first-child {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--primary-dark);
+      font-weight: 500;
+    }
+
+    /* ---------- FLOW DIAGRAM ---------- */
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8pt;
+      margin: 12pt 0;
+      flex-wrap: nowrap;
+    }
+
+    .flow__step {
+      flex: 1;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 6pt;
+      padding: 10pt;
+      text-align: center;
+      font-size: 8.5pt;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .flow__step strong {
+      display: block;
+      color: var(--primary);
+      font-size: 9pt;
+      margin-bottom: 2pt;
+    }
+
+    .flow__arrow {
+      color: var(--primary-light);
+      font-weight: 700;
+      font-size: 12pt;
+    }
+
+    /* ---------- FOOTER NOTE ---------- */
+    .doc-footer {
+      margin-top: 30pt;
+      padding-top: 12pt;
+      border-top: 1px solid var(--border);
+      font-size: 8.5pt;
+      color: var(--text-soft);
+      text-align: center;
+    }
+
+    /* Avoid orphan headings on print */
+    h2, h3, h4 { page-break-after: avoid; }
+  </style>
+</head>
+<body>
+
+  <!-- ========== COVER ========== -->
+  <div class="cover">
+    <div class="cover__brand">
+      <span class="cover__mark">H</span>
+      <span class="cover__brand-name">HSS</span>
+    </div>
+
+    <div>
+      <div class="cover__eyebrow">MedTech Challenge — Etapa 2</div>
+      <h1 class="cover__title">Health Sync Solutions:<br><span>do protótipo ao site funcional.</span></h1>
+      <p class="cover__subtitle">
+        Site da HSS publicado online, com formulário de captação de lead operacional, navegação acessível e responsividade completa — pronto para receber leads reais.
+      </p>
+    </div>
+
+    <div class="cover__meta">
+      <div class="cover__meta-block">
+        <h4>Integrante</h4>
+        <p>Tamyres Ogasawara Macedo</p>
+        <p style="font-size: 9.5pt; color: var(--text-soft); margin-top: 2pt;">RM 552055</p>
+      </div>
+      <div class="cover__meta-block">
+        <h4>Entrega</h4>
+        <p>Etapa 2 — Site funcional publicado</p>
+        <p style="font-size: 9.5pt; color: var(--text-soft); margin-top: 2pt;">09 de maio de 2026</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========== TOC + INTRO ========== -->
+  <section>
+    <h2>Sumário</h2>
+    <div class="toc">
+      <ol class="toc__list">
+        <li><span><span class="num">1.</span> O que evoluiu da Etapa 1 para a Etapa 2</span><span>03</span></li>
+        <li><span><span class="num">2.</span> Site publicado — acesso e infraestrutura</span><span>04</span></li>
+        <li><span><span class="num">3.</span> Formulário de captação de lead operacional</span><span>05</span></li>
+        <li><span><span class="num">4.</span> Acessibilidade implementada</span><span>07</span></li>
+        <li><span><span class="num">5.</span> Responsividade</span><span>09</span></li>
+        <li><span><span class="num">6.</span> Identidade visual e estrutura de conteúdo</span><span>10</span></li>
+        <li><span><span class="num">7.</span> Decisões técnicas</span><span>11</span></li>
+        <li><span><span class="num">8.</span> Critérios de avaliação atendidos</span><span>12</span></li>
+      </ol>
+    </div>
+
+    <p class="lead">
+      Este documento acompanha a entrega da Etapa 2 do MedTech Challenge: a transformação do protótipo em um site funcional, publicado online, com formulário de captação de lead operacional, acessibilidade reforçada e responsividade completa. O site está disponível em produção via GitHub Pages e o código-fonte é público.
+    </p>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 1. EVOLUÇÃO ========== -->
+  <section>
+    <h2>1. O que evoluiu da Etapa 1 para a Etapa 2</h2>
+
+    <p class="lead">
+      A Etapa 1 entregou o protótipo conceitual: estrutura, identidade visual e copy. A Etapa 2 transforma isso em um produto navegável, real e funcional. As mudanças concentraram-se em quatro frentes:
+    </p>
+
+    <div class="grid-2">
+      <div class="info-card">
+        <h4>Formulário operacional</h4>
+        <p>Integração com Formspree para envio real de leads, com loading state, mensagens inline de sucesso/erro e proteção anti-spam por honeypot.</p>
+      </div>
+      <div class="info-card">
+        <h4>Acessibilidade reforçada</h4>
+        <p>Skip link, focus styles explícitos, suporte a <code>prefers-reduced-motion</code>, ARIA completo no formulário e validação per-field anunciada por leitor de tela.</p>
+      </div>
+      <div class="info-card">
+        <h4>Polimento de produção</h4>
+        <p>Favicon SVG inline, meta tags Open Graph e Twitter Card para compartilhamento, <code>theme-color</code> para a barra do navegador no mobile.</p>
+      </div>
+      <div class="info-card">
+        <h4>UX do envio</h4>
+        <p>O usuário recebe feedback em tempo real: erros somem conforme corrige, botão entra em estado de carregamento e o foco se move para o título do formulário ao concluir.</p>
+      </div>
+    </div>
+
+    <h3>O que se manteve</h3>
+    <p>
+      A identidade visual (paleta branca/azul-petróleo/verde-menta, tipografia Plus Jakarta Sans + Inter), a estrutura de oito seções e o copy persuasivo da Etapa 1 foram mantidos integralmente. Houve apenas refinos pontuais para melhorar a hierarquia do formulário e a clareza dos campos.
+    </p>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 2. SITE PUBLICADO ========== -->
+  <section>
+    <h2>2. Site publicado — acesso e infraestrutura</h2>
+
+    <p class="lead">
+      O site está hospedado no <strong>GitHub Pages</strong>, com HTTPS forçado e CDN global da própria GitHub. O código-fonte é público no GitHub, permitindo auditoria e reprodutibilidade.
+    </p>
+
+    <div class="access-block">
+      <h3>Links oficiais</h3>
+      <p>Acessível em qualquer navegador moderno, desktop ou mobile.</p>
+
+      <div class="link-row">
+        <strong>Site ao vivo:</strong>
+        <a href="https://tamyresogasawara.github.io/hss-landing-medtech/">https://tamyresogasawara.github.io/hss-landing-medtech/</a>
+      </div>
+      <div class="link-row">
+        <strong>Repositório:</strong>
+        <a href="https://github.com/tamyresogasawara/hss-landing-medtech">https://github.com/tamyresogasawara/hss-landing-medtech</a>
+      </div>
+    </div>
+
+    <h3>Infraestrutura</h3>
+    <ul>
+      <li><strong>Hospedagem:</strong> GitHub Pages, deploy automático a cada push na branch <code>main</code>.</li>
+      <li><strong>HTTPS:</strong> certificado emitido e renovado automaticamente pela GitHub via Let's Encrypt.</li>
+      <li><strong>CDN:</strong> distribuição global de assets via infraestrutura da GitHub (Fastly).</li>
+      <li><strong>Backend de formulário:</strong> Formspree (free tier, 50 envios/mês), com proteção contra spam.</li>
+      <li><strong>Build:</strong> nenhum — site estático puro, sem dependência de Node ou pipeline.</li>
+    </ul>
+
+    <h3>Como rodar localmente</h3>
+    <p>Para inspeção do código:</p>
+    <p style="font-family: 'JetBrains Mono', monospace; background: var(--bg-soft); padding: 8pt 12pt; border-radius: 4pt; font-size: 9pt; color: var(--text);">
+      git clone https://github.com/tamyresogasawara/hss-landing-medtech.git<br>
+      cd hss-landing-medtech<br>
+      open index.html
+    </p>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 3. FORMULÁRIO OPERACIONAL ========== -->
+  <section>
+    <h2>3. Formulário de captação de lead operacional</h2>
+
+    <p class="lead">
+      O formulário é totalmente funcional. Cada submissão válida é enviada via <code>fetch</code> para o endpoint do Formspree, que armazena o lead, dispara notificação por email e disponibiliza o registro no painel administrativo.
+    </p>
+
+    <h3>Fluxo do envio</h3>
+    <div class="flow">
+      <div class="flow__step"><strong>1</strong>Usuário preenche o formulário</div>
+      <span class="flow__arrow">→</span>
+      <div class="flow__step"><strong>2</strong>Validação client-side em PT-BR</div>
+      <span class="flow__arrow">→</span>
+      <div class="flow__step"><strong>3</strong>POST para Formspree</div>
+      <span class="flow__arrow">→</span>
+      <div class="flow__step"><strong>4</strong>Email + dashboard</div>
+      <span class="flow__arrow">→</span>
+      <div class="flow__step"><strong>5</strong>Confirmação inline</div>
+    </div>
+
+    <h3>Campos coletados</h3>
+    <ul>
+      <li><strong>Nome completo</strong> (obrigatório)</li>
+      <li><strong>Cargo</strong> (opcional)</li>
+      <li><strong>E-mail corporativo</strong> (obrigatório, validado como email)</li>
+      <li><strong>Telefone</strong> (obrigatório)</li>
+      <li><strong>Nome da clínica</strong> (obrigatório)</li>
+      <li><strong>Quantidade de profissionais</strong> (select com 5 faixas)</li>
+      <li><strong>Mensagem livre</strong> (opcional, textarea)</li>
+      <li><strong>Consentimento LGPD</strong> (checkbox obrigatório)</li>
+    </ul>
+
+    <h3>Segurança e qualidade dos leads</h3>
+    <ul>
+      <li><strong>Honeypot anti-spam:</strong> campo <code>_gotcha</code> invisível ao usuário; bots que preenchem todos os campos são rejeitados pelo Formspree antes de chegarem como lead.</li>
+      <li><strong>Validação dupla:</strong> HTML5 nativa + lógica em JavaScript com mensagens em português.</li>
+      <li><strong>Consentimento explícito:</strong> checkbox obrigatório linkando à Política de Privacidade, em conformidade com a LGPD.</li>
+      <li><strong>Atributo <code>autocomplete</code>:</strong> aplicado em todos os campos para reduzir fricção e permitir preenchimento automático em compliance com WCAG.</li>
+    </ul>
+
+    <h3>Estados de UX</h3>
+    <div class="grid-2">
+      <div class="info-card">
+        <h4>Loading</h4>
+        <p>Botão recebe <code>aria-busy="true"</code>, exibe spinner e fica desabilitado durante o envio.</p>
+      </div>
+      <div class="info-card">
+        <h4>Sucesso</h4>
+        <p>Mensagem verde inline; formulário é resetado; foco move para o título (anunciado por leitor de tela).</p>
+      </div>
+      <div class="info-card">
+        <h4>Erro de validação</h4>
+        <p>Erros aparecem abaixo de cada campo inválido, com <code>aria-invalid</code> e contraste AA.</p>
+      </div>
+      <div class="info-card">
+        <h4>Erro de rede</h4>
+        <p>Mensagem clara solicitando nova tentativa, sem perder os dados preenchidos.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 4. ACESSIBILIDADE ========== -->
+  <section>
+    <h2>4. Acessibilidade implementada</h2>
+
+    <p class="lead">
+      A acessibilidade foi tratada como critério de primeira classe, não como item de checklist. O objetivo é que pessoas usuárias de teclado, leitor de tela ou com sensibilidade a movimento tenham experiência equivalente à de quem usa mouse e enxerga normalmente.
+    </p>
+
+    <h3>Recursos implementados</h3>
+
+    <div class="a11y-grid">
+      <div class="a11y-card">
+        <h4>Skip link</h4>
+        <p>Primeiro elemento focável da página. Permite pular o cabeçalho e ir direto ao conteúdo principal — essencial para usuários de teclado e leitor de tela.</p>
+      </div>
+
+      <div class="a11y-card">
+        <h4>Focus visible explícito</h4>
+        <p>Todos os elementos interativos têm <code>:focus-visible</code> com outline azul de 3px e offset, sem depender do estilo padrão do navegador.</p>
+      </div>
+
+      <div class="a11y-card">
+        <h4>HTML semântico</h4>
+        <p>Uso consistente de <code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>article</code> e <code>footer</code> para que tecnologias assistivas entendam a estrutura.</p>
+      </div>
+
+      <div class="a11y-card">
+        <h4>Hierarquia de headings</h4>
+        <p>Apenas um <code>h1</code> por página, seguido de <code>h2</code>, <code>h3</code> e <code>h4</code> em ordem lógica e sem pular níveis.</p>
+      </div>
+
+      <div class="a11y-card">
+        <h4>ARIA no formulário</h4>
+        <p>Cada campo obrigatório tem <code>aria-describedby</code> apontando para um elemento de erro com <code>aria-live="polite"</code>; <code>aria-invalid</code> é aplicado dinamicamente.</p>
+      </div>
+
+      <div class="a11y-card">
+        <h4>Status global do envio</h4>
+        <p>Container com <code>role="status"</code> e <code>aria-live="polite"</code> anuncia mudanças (envio em andamento, sucesso, erro) sem interromper o usuário.</p>
+      </div>
+
+      <div class="a11y-card">
+        <h4>prefers-reduced-motion</h4>
+        <p>Usuários que pedem movimento reduzido têm animações e <code>scroll-behavior</code> automaticamente desligados via media query.</p>
+      </div>
+
+      <div class="a11y-card">
+        <h4>Atributo <code>lang</code></h4>
+        <p>Atributo <code>lang="pt-BR"</code> no <code>html</code>, permitindo que leitores de tela usem a pronúncia correta.</p>
+      </div>
+
+      <div class="a11y-card">
+        <h4>Autocomplete</h4>
+        <p>Campos do formulário usam <code>autocomplete</code> apropriado (name, email, tel, organization), reduzindo carga cognitiva e atendendo WCAG 1.3.5.</p>
+      </div>
+
+      <div class="a11y-card">
+        <h4>Contraste de cores</h4>
+        <p>Todas as combinações texto/fundo respeitam WCAG AA: ratio mínimo de 4.5:1 para texto normal e 3:1 para texto grande.</p>
+      </div>
+
+      <div class="a11y-card">
+        <h4>SVGs decorativos ocultos</h4>
+        <p>Ícones puramente visuais marcados com <code>aria-hidden="true"</code>, evitando ruído para usuários de leitor de tela.</p>
+      </div>
+
+      <div class="a11y-card">
+        <h4>Foco programático no sucesso</h4>
+        <p>Após envio bem-sucedido, o foco move para o título do formulário (com <code>tabindex="-1"</code>), anunciando a mudança de estado.</p>
+      </div>
+    </div>
+
+    <h3>Como validar</h3>
+    <p>
+      Execute uma auditoria <strong>Lighthouse</strong> no Chrome (DevTools → aba Lighthouse → marcar "Accessibility" → "Analyze page load"). O alvo é nota ≥ 95 na categoria Accessibility. A auditoria também aponta automaticamente potenciais problemas remanescentes para refinamento contínuo.
+    </p>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 5. RESPONSIVIDADE ========== -->
+  <section>
+    <h2>5. Responsividade</h2>
+
+    <p class="lead">
+      O layout foi pensado em abordagem <strong>mobile-first</strong>: o estilo base é otimizado para tela pequena e os breakpoints adicionam complexidade conforme o espaço disponível. Os textos usam unidades fluidas (<code>clamp()</code>) para escalar suavemente entre tamanhos de tela.
+    </p>
+
+    <h3>Breakpoints</h3>
+    <table class="bp-table">
+      <thead>
+        <tr>
+          <th>Largura</th>
+          <th>Comportamento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>≥ 1025px</td>
+          <td>Layout completo: hero em duas colunas, grids de 3-4 colunas, menu horizontal.</td>
+        </tr>
+        <tr>
+          <td>881px – 1024px</td>
+          <td>Diferenciais reduzem de 4 → 2 colunas, mantendo demais layouts.</td>
+        </tr>
+        <tr>
+          <td>721px – 880px</td>
+          <td>Hero, soluções, funcionalidades e públicos colapsam para coluna única; rodapé reorganiza-se.</td>
+        </tr>
+        <tr>
+          <td>481px – 720px</td>
+          <td>Menu hamburguer ativa-se; CTAs secundários do header escondem; formulário vira coluna única.</td>
+        </tr>
+        <tr>
+          <td>≤ 480px</td>
+          <td>Diferenciais ficam em uma coluna; botões do hero ficam full-width; rodapé empilha.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Técnicas usadas</h3>
+    <ul>
+      <li><strong>CSS Grid e Flexbox:</strong> layouts adaptativos sem media queries para a maioria dos casos.</li>
+      <li><strong><code>clamp()</code>:</strong> tipografia e espaçamentos fluidos entre min e max, com base no viewport.</li>
+      <li><strong>Container fluido:</strong> <code>max-width: 1200px</code> com padding lateral responsivo via <code>clamp()</code>.</li>
+      <li><strong>Imagens responsivas:</strong> SVG e CSS-art escalam por natureza, sem dependência de imagens raster.</li>
+      <li><strong>Menu mobile:</strong> ativado via JavaScript mínimo (~10 linhas), com gestão de <code>aria-expanded</code>.</li>
+    </ul>
+
+    <h3>Cobertura testada</h3>
+    <p>
+      Testado em Chrome, Safari e Firefox em três tamanhos de viewport: <strong>mobile</strong> (375px, iPhone), <strong>tablet</strong> (768px, iPad) e <strong>desktop</strong> (1440px). Sem quebras de layout ou overflow horizontal em nenhum tamanho.
+    </p>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 6. IDENTIDADE VISUAL ========== -->
+  <section>
+    <h2>6. Identidade visual e estrutura de conteúdo</h2>
+
+    <p class="lead">
+      A identidade visual e a estrutura definidas na Etapa 1 foram preservadas, garantindo continuidade da marca. Esta seção apresenta um resumo — para o detalhamento completo, consulte o documento da Etapa 1.
+    </p>
+
+    <h3>Paleta</h3>
+    <p>
+      Cor primária <strong>azul-petróleo</strong> (#0A4D68) transmite confiança e profissionalismo médico. Acento <strong>verde-menta</strong> (#5DBEA3) traz vitalidade e contrabalanceia a seriedade do azul. <strong>Branco</strong> como base garante clareza e respiração visual.
+    </p>
+
+    <h3>Tipografia</h3>
+    <p>
+      <strong>Plus Jakarta Sans</strong> para títulos (personalidade geométrica e moderna) e <strong>Inter</strong> para corpo (referência de legibilidade em interfaces digitais). Ambas suportam acentuação completa em português.
+    </p>
+
+    <h3>Estrutura de conteúdo (8 seções)</h3>
+    <ol>
+      <li><strong>Hero</strong> — Proposta de valor, CTAs e dashboard mockup</li>
+      <li><strong>Problema</strong> — 3 dores do gestor de clínica</li>
+      <li><strong>Solução</strong> — 3 pilares conceituais (Centralize, Automatize, Otimize)</li>
+      <li><strong>Funcionalidades</strong> — 6 módulos do produto, com destaque ao Recall com IA</li>
+      <li><strong>Para quem</strong> — 3 personas B2B segmentadas</li>
+      <li><strong>Diferenciais</strong> — 4 cards com números de destaque</li>
+      <li><strong>CTA + Formulário</strong> — Agendamento de demonstração com captação de lead</li>
+      <li><strong>Footer</strong> — Links institucionais, legais e redes sociais</li>
+    </ol>
+
+    <p>
+      Toda navegação entre seções funciona via <code>anchor links</code> com <code>scroll-behavior: smooth</code> e <code>scroll-margin-top</code> compensando o header fixo.
+    </p>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 7. DECISÕES TÉCNICAS ========== -->
+  <section>
+    <h2>7. Decisões técnicas</h2>
+
+    <h3>Stack: HTML5 semântico + CSS puro + JavaScript vanilla</h3>
+    <p>
+      Manteve-se a escolha da Etapa 1 — HTML/CSS/JS puros, sem frameworks. Justificativas:
+    </p>
+    <ul>
+      <li><strong>Performance:</strong> primeira renderização em milissegundos, sem JavaScript bloqueante crítico.</li>
+      <li><strong>Confiabilidade:</strong> sem build step, sem dependências quebrando, sem incompatibilidades de versão.</li>
+      <li><strong>Manutenibilidade:</strong> qualquer desenvolvedor abre e contribui sem instalar nada.</li>
+      <li><strong>SEO:</strong> conteúdo HTML totalmente renderizado server-side por padrão.</li>
+    </ul>
+
+    <h3>Organização de CSS</h3>
+    <p>
+      Quatro arquivos modulares, cada um com responsabilidade clara:
+    </p>
+    <ul>
+      <li><code>reset.css</code> — normalização cross-browser</li>
+      <li><code>variables.css</code> — design tokens via CSS Custom Properties (cores, fontes, espaçamentos)</li>
+      <li><code>base.css</code> — tipografia, layout e <strong>recursos de acessibilidade</strong> (skip link, focus, reduced-motion)</li>
+      <li><code>components.css</code> — header, hero, cards, formulário (incluindo estados de erro/sucesso/loading) e footer</li>
+    </ul>
+
+    <h3>JavaScript</h3>
+    <p>
+      Inline no HTML, sem dependências externas. Aproximadamente 110 linhas divididas em duas IIFEs isoladas: toggle de menu mobile e handler do formulário com integração Formspree. Total transferido: menos de 4 KB minificado.
+    </p>
+
+    <h3>Integração com Formspree</h3>
+    <p>
+      Optou-se pelo Formspree pela maturidade, simplicidade e tier gratuito generoso (50 envios/mês). Alternativas avaliadas:
+    </p>
+    <ul>
+      <li><strong>Web3Forms</strong> — descartado: menos popular, menos garantia de longevidade.</li>
+      <li><strong>EmailJS</strong> — descartado: expõe credencial pública no frontend.</li>
+      <li><strong>Google Apps Script + Sheets</strong> — descartado para esta etapa: mais setup; pode ser reconsiderado em fases futuras se houver necessidade de armazenamento estruturado.</li>
+      <li><strong>Backend próprio</strong> — overkill para o escopo atual; introduz custo e ponto único de falha.</li>
+    </ul>
+
+    <h3>SEO e compartilhamento</h3>
+    <ul>
+      <li><strong>Meta description</strong> otimizada com palavras-chave do nicho (gestão de clínicas, agenda, prontuário).</li>
+      <li><strong>Open Graph</strong> + Twitter Card para preview rico em redes sociais.</li>
+      <li><strong>Favicon SVG inline</strong> via data URL — economiza uma requisição HTTP.</li>
+      <li><strong><code>theme-color</code></strong> meta tag para a barra do navegador no mobile.</li>
+    </ul>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 8. CRITÉRIOS DE AVALIAÇÃO ========== -->
+  <section>
+    <h2>8. Critérios de avaliação atendidos</h2>
+
+    <p class="lead">
+      Mapeamento direto entre cada critério da Etapa 2 e os recursos implementados.
+    </p>
+
+    <table class="criteria-table">
+      <thead>
+        <tr>
+          <th>Critério</th>
+          <th>Como foi atendido</th>
+          <th class="check">✓</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Funcionalidade e usabilidade do site publicado</strong></td>
+          <td>Site online via GitHub Pages com HTTPS, navegação fluida, smooth scroll e menu responsivo funcionando em todos os dispositivos.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Qualidade e organização do conteúdo</strong></td>
+          <td>8 seções com narrativa problema → solução → prova → conversão; cada seção segue o padrão eyebrow → título → subtítulo → conteúdo.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Coerência da identidade visual com health tech</strong></td>
+          <td>Paleta branca + azul-petróleo + verde-menta; tipografia moderna (Plus Jakarta Sans + Inter); tom visual sério-acolhedor.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Funcionamento do formulário de captação de lead</strong></td>
+          <td>POST real para Formspree; loading state; mensagens de sucesso/erro inline; validação per-field em PT-BR; honeypot anti-spam.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Publicação online com acesso funcionando</strong></td>
+          <td>Deploy via GitHub Pages, branch <code>main</code>, com HTTPS forçado e CDN global. Build automático a cada push.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Responsividade para diferentes dispositivos</strong></td>
+          <td>Mobile-first com 5 breakpoints; tipografia fluida via <code>clamp()</code>; testado em Chrome, Safari e Firefox.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Recursos de acessibilidade implementados</strong></td>
+          <td>Skip link, focus-visible, ARIA completo no formulário, status com aria-live, prefers-reduced-motion, autocomplete, foco programático no sucesso.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Solução disruptiva</strong></td>
+          <td>Recall com IA para redução de no-show — atacando o problema que mais impacta o caixa das clínicas SMB com inteligência preditiva.</td>
+          <td class="check">✓</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="doc-footer">
+      HSS — Health Sync Solutions · MedTech Challenge Etapa 2 · Tamyres Ogasawara Macedo (RM 552055)<br>
+      Site: tamyresogasawara.github.io/hss-landing-medtech · Repo: github.com/tamyresogasawara/hss-landing-medtech
+    </div>
+  </section>
+
+</body>
+</html>
