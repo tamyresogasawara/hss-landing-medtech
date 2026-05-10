@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>HSS — Entrega Final (Etapa 3) — MedTech Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================
+       PRINT-OPTIMIZED — Open in Chrome → Cmd+P → Save as PDF
+       ========================================== */
+
+    @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    :root {
+      --primary: #0a4d68;
+      --primary-dark: #073b51;
+      --primary-light: #088395;
+      --accent: #5dbea3;
+      --accent-dark: #3fa688;
+      --accent-light: #b8e5d6;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-soft: #64748b;
+      --border: #e2e8f0;
+      --bg-soft: #f7fafc;
+      --success: #10b981;
+      --success-bg: #d1fae5;
+      --danger: #ef4444;
+      --danger-bg: #fee2e2;
+    }
+
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: var(--text);
+      background: #fff;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 18pt;
+      color: var(--primary);
+      margin-bottom: 10pt;
+      padding-bottom: 6pt;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    h3 {
+      font-size: 13pt;
+      color: var(--primary-dark);
+      margin-top: 16pt;
+      margin-bottom: 6pt;
+    }
+
+    h4 {
+      font-size: 11pt;
+      font-weight: 600;
+      margin-top: 10pt;
+      margin-bottom: 4pt;
+      color: var(--text);
+    }
+
+    p { margin-bottom: 8pt; color: var(--text-muted); }
+    strong { color: var(--text); font-weight: 600; }
+
+    ul, ol { margin-left: 18pt; margin-bottom: 10pt; }
+    li { margin-bottom: 4pt; color: var(--text-muted); }
+
+    a {
+      color: var(--primary-light);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 9pt;
+      background: var(--bg-soft);
+      padding: 1pt 5pt;
+      border-radius: 3pt;
+      color: var(--primary-dark);
+    }
+
+    /* ---------- COVER ---------- */
+    .cover {
+      height: 257mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      page-break-after: always;
+      position: relative;
+      padding: 40pt;
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 8pt;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+    }
+
+    .cover__brand {
+      display: flex;
+      align-items: center;
+      gap: 10pt;
+      margin-bottom: 50pt;
+    }
+
+    .cover__mark {
+      width: 44pt;
+      height: 44pt;
+      border-radius: 8pt;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-family: "Plus Jakarta Sans";
+      font-weight: 800;
+      font-size: 22pt;
+    }
+
+    .cover__brand-name {
+      font-family: "Plus Jakarta Sans";
+      font-weight: 800;
+      font-size: 22pt;
+      color: var(--primary);
+    }
+
+    .cover__eyebrow {
+      font-size: 10pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--primary-light);
+      margin-bottom: 14pt;
+    }
+
+    .cover__title {
+      font-size: 36pt;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 16pt;
+      letter-spacing: -0.02em;
+    }
+
+    .cover__title span {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .cover__subtitle {
+      font-size: 14pt;
+      color: var(--text-muted);
+      max-width: 480pt;
+      margin-bottom: 60pt;
+      line-height: 1.45;
+    }
+
+    .cover__meta {
+      border-top: 1px solid var(--border);
+      padding-top: 24pt;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16pt;
+    }
+
+    .cover__meta-block h4 {
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-soft);
+      font-weight: 600;
+      margin-bottom: 4pt;
+      margin-top: 0;
+    }
+
+    .cover__meta-block p {
+      font-size: 11pt;
+      color: var(--text);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    /* ---------- CONTENT ---------- */
+    section { margin-bottom: 24pt; page-break-inside: auto; }
+    .page-break { page-break-after: always; }
+
+    .lead {
+      font-size: 11.5pt;
+      color: var(--text-muted);
+      margin-bottom: 14pt;
+      line-height: 1.55;
+    }
+
+    /* ---------- TOC ---------- */
+    .toc {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 6pt;
+      padding: 16pt 20pt;
+      margin: 14pt 0 20pt 0;
+    }
+
+    .toc__list { list-style: none; margin: 0; }
+
+    .toc__list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 4pt 0;
+      border-bottom: 1px dotted var(--border);
+      font-size: 10pt;
+      color: var(--text);
+    }
+
+    .toc__list li:last-child { border-bottom: none; }
+
+    .toc__list .num {
+      color: var(--primary-light);
+      font-weight: 600;
+      margin-right: 8pt;
+    }
+
+    /* ---------- INTEGRANTES BLOCK ---------- */
+    .integrantes {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 8pt;
+      padding: 18pt 22pt;
+      margin: 14pt 0;
+    }
+
+    .integrantes h3 { margin-top: 0; }
+
+    .integrantes table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8pt;
+      font-size: 10pt;
+    }
+
+    .integrantes th {
+      background: var(--primary);
+      color: #fff;
+      text-align: left;
+      padding: 8pt 12pt;
+      font-weight: 600;
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .integrantes td {
+      padding: 8pt 12pt;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+
+    /* ---------- ACCESS / LINKS ---------- */
+    .access-block {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
+      color: #fff;
+      padding: 24pt;
+      border-radius: 8pt;
+      margin: 14pt 0;
+    }
+
+    .access-block h3 {
+      color: #fff;
+      margin-top: 0;
+      font-size: 16pt;
+    }
+
+    .access-block p {
+      color: rgba(255,255,255,0.85);
+      font-size: 10.5pt;
+      margin-bottom: 14pt;
+    }
+
+    .access-block .link-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8pt;
+      margin-bottom: 8pt;
+    }
+
+    .access-block .link-row strong {
+      color: var(--accent-light);
+      min-width: 90pt;
+      font-size: 9.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .access-block a {
+      color: #fff;
+      text-decoration: underline;
+      font-size: 11pt;
+      word-break: break-all;
+    }
+
+    /* ---------- INFO CARDS ---------- */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12pt;
+      margin: 12pt 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10pt;
+      margin: 12pt 0;
+    }
+
+    .info-card {
+      background: var(--bg-soft);
+      border-left: 3px solid var(--primary);
+      border-radius: 4pt;
+      padding: 12pt 14pt;
+    }
+
+    .info-card h4 {
+      margin: 0 0 4pt 0;
+      color: var(--primary);
+    }
+
+    .info-card p {
+      font-size: 9.5pt;
+      margin: 0;
+    }
+
+    /* ---------- DECISION CARDS (justifications) ---------- */
+    .decision {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 4pt;
+      padding: 14pt 16pt;
+      margin-bottom: 10pt;
+    }
+
+    .decision h4 {
+      margin: 0 0 6pt 0;
+      color: var(--primary);
+      font-size: 11pt;
+    }
+
+    .decision p {
+      margin: 0 0 4pt 0;
+      font-size: 10pt;
+      line-height: 1.5;
+    }
+
+    .decision__why {
+      display: block;
+      font-size: 9pt;
+      color: var(--text-soft);
+      margin-top: 4pt;
+      font-style: italic;
+    }
+
+    .decision__why strong {
+      color: var(--text);
+      font-style: normal;
+    }
+
+    /* ---------- ROI HIGHLIGHT ---------- */
+    .roi-highlight {
+      background: linear-gradient(135deg, var(--accent-light) 0%, #d8f0e6 100%);
+      border-radius: 8pt;
+      padding: 16pt 20pt;
+      margin: 12pt 0;
+      border: 1px solid rgba(93, 190, 163, 0.4);
+    }
+
+    .roi-highlight h4 {
+      margin-top: 0;
+      color: var(--primary-dark);
+    }
+
+    .roi-highlight p {
+      color: var(--primary-dark);
+      margin-bottom: 0;
+      font-size: 10pt;
+    }
+
+    /* ---------- CRITERIA TABLE ---------- */
+    .criteria-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10pt;
+      font-size: 9.5pt;
+    }
+
+    .criteria-table th {
+      background: var(--primary);
+      color: #fff;
+      text-align: left;
+      padding: 8pt 10pt;
+      font-weight: 600;
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .criteria-table td {
+      padding: 8pt 10pt;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .criteria-table .check {
+      color: var(--success);
+      font-weight: 700;
+      font-size: 11pt;
+      text-align: center;
+      width: 30pt;
+    }
+
+    /* ---------- DELIVERABLES BLOCK ---------- */
+    .deliverables {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10pt;
+      margin: 14pt 0;
+    }
+
+    .deliverable-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--primary);
+      border-radius: 6pt;
+      padding: 14pt;
+      text-align: center;
+    }
+
+    .deliverable-card__icon {
+      display: inline-flex;
+      width: 36pt;
+      height: 36pt;
+      border-radius: 50%;
+      background: var(--accent-light);
+      color: var(--primary-dark);
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14pt;
+      margin-bottom: 8pt;
+      font-family: "Plus Jakarta Sans";
+    }
+
+    .deliverable-card h4 {
+      margin: 4pt 0;
+      font-size: 10pt;
+    }
+
+    .deliverable-card p {
+      font-size: 8.5pt;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* ---------- FOOTER NOTE ---------- */
+    .doc-footer {
+      margin-top: 30pt;
+      padding-top: 12pt;
+      border-top: 1px solid var(--border);
+      font-size: 8.5pt;
+      color: var(--text-soft);
+      text-align: center;
+    }
+
+    h2, h3, h4 { page-break-after: avoid; }
+
+    /* Highlight when a placeholder still needs replacing */
+    .placeholder {
+      background: #fef3c7;
+      color: #92400e;
+      padding: 1pt 5pt;
+      border-radius: 3pt;
+      font-weight: 600;
+      font-size: 9pt;
+      font-family: "JetBrains Mono", monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== COVER ========== -->
+  <div class="cover">
+    <div class="cover__brand">
+      <span class="cover__mark">H</span>
+      <span class="cover__brand-name">HSS</span>
+    </div>
+
+    <div>
+      <div class="cover__eyebrow">MedTech Challenge — Etapa 3 (Entrega Final)</div>
+      <h1 class="cover__title">Health Sync Solutions:<br><span>do conceito ao produto.</span></h1>
+      <p class="cover__subtitle">
+        Site funcional publicado, formulário operacional, calculadora de ROI interativa e vídeo-pitch — a entrega final da plataforma B2B que devolve tempo, dinheiro e organização para clínicas pequenas e médias.
+      </p>
+    </div>
+
+    <div class="cover__meta">
+      <div class="cover__meta-block">
+        <h4>Integrante</h4>
+        <p>Tamyres Ogasawara Macedo</p>
+        <p style="font-size: 9.5pt; color: var(--text-soft); margin-top: 2pt;">RM 552055</p>
+      </div>
+      <div class="cover__meta-block">
+        <h4>Entrega</h4>
+        <p>Etapa 3 — Entrega Final</p>
+        <p style="font-size: 9.5pt; color: var(--text-soft); margin-top: 2pt;">09 de maio de 2026</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========== INTEGRANTES + LINKS + TOC ========== -->
+  <section>
+    <h2>Identificação e entregas</h2>
+
+    <h3>Integrantes do grupo (ordem alfabética)</h3>
+    <div class="integrantes">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome completo</th>
+            <th style="text-align: right;">RM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tamyres Ogasawara Macedo</td>
+            <td style="text-align: right; font-family: 'JetBrains Mono', monospace;">552055</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Os três entregáveis da Etapa 3</h3>
+    <div class="deliverables">
+      <div class="deliverable-card">
+        <div class="deliverable-card__icon">1</div>
+        <h4>Site funcional publicado</h4>
+        <p>Landing completa com calculadora de ROI, formulário operacional, responsividade e acessibilidade.</p>
+      </div>
+      <div class="deliverable-card">
+        <div class="deliverable-card__icon">2</div>
+        <h4>Vídeo-pitch</h4>
+        <p>Apresentação de 2-3 min com demonstração da calculadora e justificativas das decisões.</p>
+      </div>
+      <div class="deliverable-card">
+        <div class="deliverable-card__icon">3</div>
+        <h4>Documento PDF</h4>
+        <p>Este documento — com integrantes, justificativas e todos os links da entrega.</p>
+      </div>
+    </div>
+
+    <div class="access-block">
+      <h3>Links da entrega</h3>
+      <p>Todos os recursos da entrega final, prontos para acesso e avaliação.</p>
+
+      <div class="link-row">
+        <strong>Site (deploy):</strong>
+        <a href="https://tamyresogasawara.github.io/hss-landing-medtech/">https://tamyresogasawara.github.io/hss-landing-medtech/</a>
+      </div>
+      <div class="link-row">
+        <strong>Repositório:</strong>
+        <a href="https://github.com/tamyresogasawara/hss-landing-medtech">https://github.com/tamyresogasawara/hss-landing-medtech</a>
+      </div>
+      <div class="link-row">
+        <strong>Vídeo-pitch:</strong>
+        <a href="#"><span class="placeholder">[INSERIR LINK DO VÍDEO]</span></a>
+      </div>
+    </div>
+
+    <h3>Sumário</h3>
+    <div class="toc">
+      <ol class="toc__list">
+        <li><span><span class="num">1.</span> Visão geral da solução</span><span>03</span></li>
+        <li><span><span class="num">2.</span> Calculadora de ROI</span><span>04</span></li>
+        <li><span><span class="num">3.</span> Justificativas das decisões de projeto</span><span>06</span></li>
+        <li><span><span class="num">4.</span> Funcionamento do site e do formulário</span><span>09</span></li>
+        <li><span><span class="num">5.</span> Acessibilidade e responsividade</span><span>10</span></li>
+        <li><span><span class="num">6.</span> Critérios de avaliação atendidos</span><span>11</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 1. VISÃO GERAL ========== -->
+  <section>
+    <h2>1. Visão geral da solução</h2>
+
+    <h3>O problema</h3>
+    <p>
+      Clínicas pequenas e médias no Brasil ainda operam com uma colcha de retalhos de planilhas, WhatsApp e softwares legados que não se comunicam. Esse cenário gera três dores principais: <strong>agenda fragmentada</strong> (horas perdidas confirmando consultas), <strong>taxa de no-show elevada</strong> (cerca de 30% dos pacientes faltam sem aviso) e <strong>decisões no escuro</strong> por falta de indicadores consolidados.
+    </p>
+
+    <h3>A solução</h3>
+    <p>
+      A Health Sync Solutions (HSS) é uma plataforma B2B SaaS que reúne <strong>seis módulos integrados</strong> — agenda inteligente, prontuário eletrônico, portal do paciente, financeiro, recall com IA e dashboard de gestão — em uma única interface, com conformidade LGPD nativa.
+    </p>
+
+    <h3>O diferencial disruptivo</h3>
+    <div class="roi-highlight">
+      <h4>Recall com IA — redução de no-show em até 60%</h4>
+      <p>
+        O algoritmo da HSS analisa o histórico comportamental de cada paciente (faltas anteriores, horário das consultas, especialidade) e identifica os mais propensos a faltar. Para esses, dispara lembretes personalizados via WhatsApp na janela de tempo ideal. Atacamos o número que mais machuca o caixa das clínicas, com inteligência preditiva — não com força bruta de mensagens em massa.
+      </p>
+    </div>
+
+    <h3>Público-alvo (B2B)</h3>
+    <div class="grid-3">
+      <div class="info-card">
+        <h4>Consultórios independentes</h4>
+        <p>Profissionais autônomos que querem profissionalizar a gestão sem contratar TI.</p>
+      </div>
+      <div class="info-card">
+        <h4>Clínicas multi-especialidade</h4>
+        <p>Coordenação fluida entre especialistas, com prontuário unificado por paciente.</p>
+      </div>
+      <div class="info-card">
+        <h4>Pequenas redes e franquias</h4>
+        <p>Visão consolidada de várias unidades, com permissões granulares e dashboards comparativos.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 2. CALCULADORA DE ROI ========== -->
+  <section>
+    <h2>2. Calculadora de ROI</h2>
+
+    <p class="lead">
+      A calculadora é a peça central da Etapa 3 e a ponte entre a promessa e a prova. Ela permite que qualquer visitante simule, em tempo real e sem cadastro, quanto a HSS pode devolver para o caixa da sua clínica — usando os números da própria operação.
+    </p>
+
+    <h3>Modelo de cálculo</h3>
+
+    <h4>Inputs (ajustados pelo usuário)</h4>
+    <ul>
+      <li><strong>Profissionais ativos</strong> (default: 5)</li>
+      <li><strong>Consultas por dia, por profissional</strong> (default: 12)</li>
+      <li><strong>Ticket médio por consulta em R$</strong> (default: 200)</li>
+      <li><strong>Dias úteis por mês</strong> (default: 22)</li>
+      <li><strong>Taxa atual de no-show</strong> em % (default: 30%, slider de 0 a 60)</li>
+      <li><strong>Horas por semana em tarefas administrativas manuais</strong> (default: 20)</li>
+      <li><strong>Custo médio por hora da equipe administrativa em R$</strong> (default: 25)</li>
+    </ul>
+
+    <h4>Premissas do modelo</h4>
+    <ul>
+      <li><strong>Redução de 60% no no-show</strong> via Recall com IA — baseado em médias observadas em soluções similares de gestão preditiva.</li>
+      <li><strong>Redução de 60% nas tarefas administrativas manuais</strong> via automação de confirmação, remarcação e cobrança.</li>
+      <li><strong>Quatro semanas por mês</strong> para conversão de horas semanais em mensais.</li>
+    </ul>
+
+    <h4>Fórmulas aplicadas</h4>
+    <p style="font-family: 'JetBrains Mono', monospace; background: var(--bg-soft); padding: 10pt 14pt; border-radius: 4pt; font-size: 9pt; line-height: 1.6; color: var(--text);">
+      receita_potencial = profissionais × consultas_dia × ticket × dias_mes<br>
+      perda_no_show = receita_potencial × taxa_no_show<br>
+      custo_admin = horas_admin × 4 × custo_hora<br>
+      <br>
+      <strong>perda_total_mensal</strong> = perda_no_show + custo_admin<br>
+      <strong>recuperado_mensal</strong> = (perda_no_show × 0.6) + (custo_admin × 0.6)<br>
+      <strong>recuperado_anual</strong> = recuperado_mensal × 12
+    </p>
+
+    <h3>Apresentação dos resultados</h3>
+    <p>
+      Os resultados aparecem em três cards principais, com hierarquia visual clara:
+    </p>
+    <div class="grid-3">
+      <div class="info-card" style="border-left-color: var(--danger);">
+        <h4 style="color: #991b1b;">Card 1 — Perda atual</h4>
+        <p>Destaque vermelho. Mostra ao gestor o quanto está perdendo hoje — gerando o impulso emocional para considerar a solução.</p>
+      </div>
+      <div class="info-card" style="border-left-color: var(--success); background: var(--success-bg);">
+        <h4 style="color: #047857;">Card 2 — Ganho mensal (hero)</h4>
+        <p>Card maior, em gradiente da marca. É o número que importa para a decisão de compra. Visualmente dominante.</p>
+      </div>
+      <div class="info-card" style="border-left-color: var(--accent-dark); background: var(--accent-light);">
+        <h4 style="color: #073b51;">Card 3 — Ganho anual</h4>
+        <p>Mesma cor do acento da marca. Multiplica o impacto mensal por 12 — mostrando a relevância estratégica do investimento.</p>
+      </div>
+    </div>
+
+    <p>
+      Abaixo dos cards, um <strong>mini-chart visual de barras</strong> compara graficamente "Perda atual" vs "Ganho com HSS", permitindo absorção do contraste em segundos. Ao final, um CTA leva o lead diretamente ao formulário de demonstração.
+    </p>
+
+    <h3>Acessibilidade da calculadora</h3>
+    <ul>
+      <li><strong>Painel de outputs com <code>aria-live="polite"</code> e <code>aria-atomic="true"</code></strong> — leitores de tela anunciam mudanças nos resultados conforme o usuário ajusta os inputs.</li>
+      <li><strong>Slider com <code>output</code> elemento associado</strong> — exibe o valor atual em tempo real e é lido em conjunto pelo leitor.</li>
+      <li><strong>Atributos <code>inputmode</code></strong> em todos os campos numéricos — apresenta teclado adequado em dispositivos móveis.</li>
+      <li><strong>Mini-chart com <code>role="img"</code> e <code>aria-labelledby</code></strong> — leitores de tela anunciam o significado da visualização.</li>
+      <li><strong>Botão de reset visível</strong> — permite voltar aos defaults com um clique, importante para usuários que se perdem.</li>
+    </ul>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 3. JUSTIFICATIVAS ========== -->
+  <section>
+    <h2>3. Justificativas das decisões de projeto</h2>
+
+    <p class="lead">
+      Cada decisão estratégica do projeto foi tomada com base em critérios objetivos. Esta seção documenta as principais escolhas e os porquês por trás delas.
+    </p>
+
+    <h3>Decisões de produto</h3>
+
+    <div class="decision">
+      <h4>Pivot do conceito original (interoperabilidade) para gestão de clínicas</h4>
+      <p>O conceito inicial seria uma plataforma de interoperabilidade para hospitais — disruptivo, mas inviável de prototipar funcionalmente nas etapas seguintes. Pivotamos para gestão de clínicas pequenas e médias, mantendo o "Sync" no nome com novo significado: sincronia operacional dentro da clínica.</p>
+      <span class="decision__why"><strong>Por quê:</strong> permite construir funcionalidades reais nas próximas etapas (calculadora de ROI, agenda, formulário) sem perder a vibe health-tech.</span>
+    </div>
+
+    <div class="decision">
+      <h4>Diferencial disruptivo: Recall com IA contra no-show</h4>
+      <p>Em vez de apostar em features amplas, escolhemos um diferencial cirúrgico — IA preditiva atacando o no-show, problema que mais machuca o caixa das clínicas SMB.</p>
+      <span class="decision__why"><strong>Por quê:</strong> foco vence amplitude. É mais fácil pitchar "reduzimos no-show em 60%" do que "temos 200 features". Ainda faz a calculadora de ROI ter um pilar concreto e mensurável.</span>
+    </div>
+
+    <h3>Decisões técnicas</h3>
+
+    <div class="decision">
+      <h4>Stack: HTML5 + CSS puro + JavaScript vanilla (sem frameworks)</h4>
+      <p>Decidimos não usar React, Vue, Tailwind ou qualquer framework. Apenas HTML semântico, CSS com Custom Properties e JavaScript vanilla.</p>
+      <span class="decision__why"><strong>Por quê:</strong> performance (carrega em milissegundos), zero setup (qualquer integrante abre e contribui), zero dependências quebrando, totalmente acessível para SEO. A complexidade adicional de um framework não se justifica para uma landing page institucional.</span>
+    </div>
+
+    <div class="decision">
+      <h4>Organização modular do CSS em 4 arquivos</h4>
+      <p>Separamos em <code>reset.css</code>, <code>variables.css</code>, <code>base.css</code> e <code>components.css</code> em vez de um único arquivo monolítico ou dezenas de pequenos arquivos.</p>
+      <span class="decision__why"><strong>Por quê:</strong> equilibra organização e simplicidade. Trocar uma cor da identidade visual exige editar uma única linha. Permite trabalho em paralelo sem conflitos.</span>
+    </div>
+
+    <div class="decision">
+      <h4>Backend de formulário: Formspree</h4>
+      <p>Escolhemos Formspree em vez de Web3Forms, EmailJS, Google Apps Script ou backend próprio.</p>
+      <span class="decision__why"><strong>Por quê:</strong> maturidade da plataforma + tier gratuito generoso (50 envios/mês) + integração via simples POST com fetch. Não expõe credencial pública (como EmailJS faria) e não exige setup adicional (como GAS faria).</span>
+    </div>
+
+    <div class="decision">
+      <h4>Hospedagem: GitHub Pages</h4>
+      <p>Deploy via GitHub Pages em vez de Vercel, Netlify, Firebase Hosting ou similar.</p>
+      <span class="decision__why"><strong>Por quê:</strong> integração direta com o repositório que já usaríamos para versionamento; HTTPS automático com Let's Encrypt; CDN global gratuita; zero configuração de pipeline; deploy a cada push na main. Para um site estático sem build, é a opção mais enxuta.</span>
+    </div>
+
+    <h3>Decisões de design</h3>
+
+    <div class="decision">
+      <h4>Paleta: branco + azul-petróleo + verde-menta</h4>
+      <p>Branco como cor primária; <strong>#0A4D68</strong> (azul-petróleo) como secundária; <strong>#5DBEA3</strong> (verde-menta) como acento.</p>
+      <span class="decision__why"><strong>Por quê:</strong> azul-petróleo evoca confiança e tradição médica sem parecer estéril. Verde-menta traz vitalidade e contrabalanceia a seriedade. Branco garante clareza e respiração — essencial para uso prolongado em ambiente clínico. Evitamos azuis genéricos de "saúde de farmácia".</span>
+    </div>
+
+    <div class="decision">
+      <h4>Tipografia: Plus Jakarta Sans + Inter</h4>
+      <p>Plus Jakarta Sans para títulos; Inter para corpo de texto.</p>
+      <span class="decision__why"><strong>Por quê:</strong> Plus Jakarta tem personalidade geométrica que destaca títulos sem virar decorativa. Inter é a referência absoluta de legibilidade em interfaces digitais. Ambas suportam acentuação completa em português e têm múltiplos pesos disponíveis no Google Fonts.</span>
+    </div>
+
+    <div class="decision">
+      <h4>Hierarquia padronizada: eyebrow → título → subtítulo → conteúdo</h4>
+      <p>Toda seção da landing segue a mesma estrutura de cabeçalho.</p>
+      <span class="decision__why"><strong>Por quê:</strong> reduz a carga cognitiva do usuário ao escanear a página. Quando o cérebro reconhece o padrão, o conteúdo flui mais rápido. Padrão consagrado em landing pages B2B de alta performance.</span>
+    </div>
+
+    <div class="decision">
+      <h4>Hero com mockup de dashboard em CSS puro (sem imagem externa)</h4>
+      <p>O mockup do produto na primeira dobra é construído inteiramente em HTML e CSS.</p>
+      <span class="decision__why"><strong>Por quê:</strong> não precisamos esperar design de produto para ter um visual de produto crível; carrega instantâneo (sem requisição de imagem); escala perfeitamente em qualquer tela; transmite seriedade técnica.</span>
+    </div>
+
+    <h3>Decisões de UX e acessibilidade</h3>
+
+    <div class="decision">
+      <h4>Validação de formulário em português, inline, com ARIA</h4>
+      <p>Substituímos a validação nativa do browser (mensagens em inglês ou português variável por OS) por validação custom com mensagens consistentes, atributos <code>aria-invalid</code> e <code>aria-describedby</code>.</p>
+      <span class="decision__why"><strong>Por quê:</strong> consistência de UX, acessibilidade real para leitores de tela, mensagens contextualizadas para o usuário brasileiro.</span>
+    </div>
+
+    <div class="decision">
+      <h4>Calculadora atualiza em tempo real, sem botão "Calcular"</h4>
+      <p>A calculadora recomputa a cada mudança em qualquer input, sem precisar clicar em um botão.</p>
+      <span class="decision__why"><strong>Por quê:</strong> feedback imediato é mais persuasivo. O usuário vê o número subir conforme ajusta — gera engajamento e exploração natural ("e se eu tivesse 20 profissionais em vez de 5?").</span>
+    </div>
+
+    <div class="decision">
+      <h4>Acessibilidade tratada como critério de primeira classe, não como checklist</h4>
+      <p>Skip link, focus styles explícitos, <code>prefers-reduced-motion</code>, ARIA completo no formulário e na calculadora, foco programático após sucesso.</p>
+      <span class="decision__why"><strong>Por quê:</strong> o critério da Etapa 2 e 3 é explícito sobre acessibilidade, mas além da nota: clínicas atendem pessoas idosas, com deficiência, com problemas motores. Ironia se a plataforma para esse público fosse inacessível.</span>
+    </div>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 4. SITE E FORMULÁRIO ========== -->
+  <section>
+    <h2>4. Funcionamento do site e do formulário</h2>
+
+    <h3>Site publicado</h3>
+    <p>
+      O site está hospedado no GitHub Pages, com HTTPS forçado e CDN global. Acesso direto pela URL pública. Build automático a cada push na branch <code>main</code> — sem pipeline de CI/CD adicional.
+    </p>
+
+    <h3>Estrutura de seções (com âncoras)</h3>
+    <ol>
+      <li><strong>Hero</strong> (<code>#hero</code>) — proposta de valor, CTAs e mockup de dashboard</li>
+      <li><strong>Problema</strong> (<code>#problema</code>) — 3 dores das clínicas</li>
+      <li><strong>Solução</strong> (<code>#solucao</code>) — 3 pilares (Centralize, Automatize, Otimize)</li>
+      <li><strong>Funcionalidades</strong> (<code>#funcionalidades</code>) — 6 módulos do produto</li>
+      <li><strong>Para quem</strong> (<code>#para-quem</code>) — 3 personas B2B</li>
+      <li><strong>Diferenciais</strong> (<code>#diferenciais</code>) — 4 cards de números</li>
+      <li><strong>Calculadora de ROI</strong> (<code>#roi</code>) — interativa, em tempo real</li>
+      <li><strong>CTA + Formulário</strong> (<code>#contato</code>) — captação de lead</li>
+      <li><strong>Footer</strong> — links institucionais e redes sociais</li>
+    </ol>
+
+    <h3>Formulário operacional</h3>
+    <p>
+      O formulário envia leads reais via Formspree. Cada submissão válida dispara um email para o owner do formulário e fica registrada no painel administrativo do Formspree.
+    </p>
+
+    <h4>Recursos do formulário</h4>
+    <ul>
+      <li><strong>POST via fetch</strong> com header <code>Accept: application/json</code> — sem redirect, mantém o usuário na página.</li>
+      <li><strong>Estado de loading</strong> no botão (<code>aria-busy="true"</code>, spinner CSS).</li>
+      <li><strong>Mensagens inline</strong> de sucesso, erro de validação e erro de rede.</li>
+      <li><strong>Validação per-field em PT-BR</strong>, com erros que somem em tempo real conforme o usuário corrige.</li>
+      <li><strong>Honeypot anti-spam</strong> via campo <code>_gotcha</code> invisível.</li>
+      <li><strong>Foco programático</strong> no título do formulário após sucesso, anunciado por leitor de tela.</li>
+      <li><strong>Atributos <code>autocomplete</code></strong> apropriados em todos os campos.</li>
+      <li><strong>Consentimento LGPD</strong> via checkbox obrigatório.</li>
+    </ul>
+
+    <h3>Navegação</h3>
+    <p>
+      Anchor links no menu apontam para o <code>id</code> de cada seção. <code>scroll-behavior: smooth</code> garante a transição suave; <code>scroll-margin-top</code> compensa o header fixo. No mobile, menu hamburguer com gestão de <code>aria-expanded</code>.
+    </p>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 5. ACESSIBILIDADE E RESPONSIVIDADE ========== -->
+  <section>
+    <h2>5. Acessibilidade e responsividade</h2>
+
+    <h3>Acessibilidade implementada</h3>
+
+    <div class="grid-2">
+      <div class="info-card">
+        <h4>Skip link</h4>
+        <p>Primeiro elemento focável da página, permite pular o cabeçalho.</p>
+      </div>
+      <div class="info-card">
+        <h4>Focus-visible explícito</h4>
+        <p>Outline azul de 3px com offset em todos os elementos interativos.</p>
+      </div>
+      <div class="info-card">
+        <h4>HTML semântico</h4>
+        <p>header, nav, main, section, article, footer usados consistentemente.</p>
+      </div>
+      <div class="info-card">
+        <h4>ARIA no formulário e calculadora</h4>
+        <p>aria-describedby, aria-invalid, aria-live, aria-busy aplicados onde fazem sentido.</p>
+      </div>
+      <div class="info-card">
+        <h4>prefers-reduced-motion</h4>
+        <p>Animações e smooth scroll desligados para usuários que pedem.</p>
+      </div>
+      <div class="info-card">
+        <h4>Atributo lang="pt-BR"</h4>
+        <p>Leitor de tela usa pronúncia portuguesa correta.</p>
+      </div>
+      <div class="info-card">
+        <h4>Autocomplete em campos</h4>
+        <p>name, email, tel, organization atribuídos corretamente.</p>
+      </div>
+      <div class="info-card">
+        <h4>Contraste WCAG AA</h4>
+        <p>Todas combinações de texto/fundo respeitam o ratio mínimo de 4.5:1.</p>
+      </div>
+    </div>
+
+    <h3>Responsividade — breakpoints</h3>
+    <p>
+      Layout mobile-first, com tipografia fluida via <code>clamp()</code> e cinco breakpoints principais:
+    </p>
+    <ul>
+      <li><strong>≥ 1025px</strong> — layout completo, hero em duas colunas, grids de 3-4 colunas, menu horizontal.</li>
+      <li><strong>881-1024px</strong> — diferenciais reduzem de 4 para 2 colunas.</li>
+      <li><strong>721-880px</strong> — hero, soluções, funcionalidades, públicos e calculadora viram coluna única.</li>
+      <li><strong>481-720px</strong> — menu hamburguer ativa-se; formulário em coluna única.</li>
+      <li><strong>≤ 480px</strong> — diferenciais em coluna única; botões hero full-width.</li>
+    </ul>
+
+    <p>
+      Testado em Chrome, Safari e Firefox em três tamanhos: mobile (375px, iPhone), tablet (768px, iPad), desktop (1440px). Sem overflow horizontal ou quebras visuais em nenhum tamanho.
+    </p>
+  </section>
+
+  <div class="page-break"></div>
+
+
+  <!-- ========== 6. CRITÉRIOS DE AVALIAÇÃO ========== -->
+  <section>
+    <h2>6. Critérios de avaliação atendidos</h2>
+
+    <p class="lead">
+      Mapeamento direto entre cada critério da Etapa 3 e os recursos implementados na entrega final.
+    </p>
+
+    <table class="criteria-table">
+      <thead>
+        <tr>
+          <th>Critério</th>
+          <th>Como foi atendido</th>
+          <th class="check">✓</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Funcionalidade e usabilidade da calculadora de ROI</strong></td>
+          <td>Calculadora 100% funcional em JavaScript vanilla. Sete inputs (incluindo slider acessível), três outputs em tempo real, mini-chart visual e CTA. Sem botão "calcular" — recomputa em qualquer mudança.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Clareza na apresentação dos resultados financeiros</strong></td>
+          <td>Três cards com hierarquia visual clara: perda atual (vermelho), ganho mensal (gradiente da marca, destaque hero), ganho anual (verde-menta). Mini-chart de barras compara perda vs ganho. Formatação BRL via Intl.NumberFormat.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Qualidade do portal e coerência B2B saúde</strong></td>
+          <td>9 seções com narrativa problema → solução → prova → conversão. Paleta health-tech (branco + azul-petróleo + verde-menta), tipografia moderna (Plus Jakarta + Inter), copy persuasivo voltado a gestores de clínica.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Funcionamento do formulário de captação de lead</strong></td>
+          <td>POST real para Formspree; loading state; mensagens de sucesso/erro inline; validação per-field em PT-BR; honeypot anti-spam; foco programático no sucesso.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Publicação online com acesso funcionando</strong></td>
+          <td>Deploy via GitHub Pages, branch main, com HTTPS forçado e CDN global. Build automático a cada push.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Responsividade para diferentes dispositivos</strong></td>
+          <td>Mobile-first com 5 breakpoints; tipografia fluida via <code>clamp()</code>; testado em Chrome, Safari e Firefox em mobile, tablet e desktop.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Recursos de acessibilidade implementados</strong></td>
+          <td>Skip link, focus-visible explícito, ARIA completo no formulário e na calculadora, status com aria-live, prefers-reduced-motion, autocomplete, foco programático no sucesso, contraste WCAG AA.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Qualidade e argumentação do vídeo-pitch</strong></td>
+          <td>Vídeo-pitch de 2:30 com estrutura clara: problema → solução → demo da calculadora ao vivo → decisões de design e desenvolvimento → encerramento. Disponível no link informado na primeira página.</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Solução disruptiva</strong></td>
+          <td>Recall com IA para redução de no-show em até 60% — atacando o problema que mais machuca o caixa das clínicas SMB com inteligência preditiva, não com força bruta de mensagens em massa.</td>
+          <td class="check">✓</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="doc-footer">
+      HSS — Health Sync Solutions · MedTech Challenge — Entrega Final (Etapa 3)<br>
+      Tamyres Ogasawara Macedo (RM 552055) · 09/05/2026<br>
+      Site: tamyresogasawara.github.io/hss-landing-medtech · Repo: github.com/tamyresogasawara/hss-landing-medtech
+    </div>
+  </section>
+
+</body>
+</html>
