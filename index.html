@@ -4,7 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="HSS — Health Sync Solutions. Plataforma completa de gestão para clínicas: agenda, prontuário, financeiro e portal do paciente em um só lugar." />
+  <meta name="theme-color" content="#0a4d68" />
   <title>HSS — Health Sync Solutions | Gestão integrada para clínicas</title>
+
+  <!-- Favicon (SVG inline, no extra request) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230a4d68'/%3E%3Cstop offset='100%25' stop-color='%235dbea3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='12' fill='url(%23g)'/%3E%3Ctext x='32' y='44' font-family='system-ui,sans-serif' font-size='36' font-weight='800' text-anchor='middle' fill='%23fff'%3EH%3C/text%3E%3C/svg%3E" />
+
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="HSS — Health Sync Solutions | Gestão integrada para clínicas" />
+  <meta property="og:description" content="Plataforma B2B que centraliza agenda, prontuário, financeiro e portal do paciente — para clínicas que querem crescer sem perder o controle." />
+  <meta property="og:url" content="https://tamyresogasawara.github.io/hss-landing-medtech/" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HSS — Health Sync Solutions" />
+  <meta name="twitter:description" content="A gestão da sua clínica, finalmente em um lugar só." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,6 +30,9 @@
   <link rel="stylesheet" href="styles/components.css" />
 </head>
 <body>
+
+  <!-- Skip link — acessibilidade para teclado/leitor de tela -->
+  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
 
   <!-- ========== HEADER / NAV ========== -->
   <header class="header">
@@ -49,7 +66,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
 
     <!-- ========== HERO ========== -->
     <section class="hero" id="hero">
@@ -423,35 +440,92 @@
             </ul>
           </div>
 
-          <form class="lead-form" id="leadForm" novalidate>
-            <h3 class="lead-form__title">Agende sua demonstração</h3>
+          <form
+            class="lead-form"
+            id="leadForm"
+            action="https://formspree.io/f/xeenpkel"
+            method="POST"
+            novalidate
+            aria-labelledby="leadFormTitle"
+          >
+            <h3 class="lead-form__title" id="leadFormTitle" tabindex="-1">Agende sua demonstração</h3>
             <p class="lead-form__subtitle">Preencha os dados e nossa equipe entra em contato em até 1 dia útil.</p>
+
+            <!-- Honeypot anti-spam — invisível pra usuários, capturado pelo Formspree -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="honeypot" aria-hidden="true" />
+
+            <!-- Assunto do email recebido pelo Formspree -->
+            <input type="hidden" name="_subject" value="Novo lead HSS — Demonstração" />
 
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label" for="nome">Nome completo <span class="required">*</span></label>
-                <input class="form-input" type="text" id="nome" name="nome" required />
+                <label class="form-label" for="nome">Nome completo <span class="required" aria-label="obrigatório">*</span></label>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="nome"
+                  name="nome"
+                  required
+                  autocomplete="name"
+                  aria-describedby="nome-error"
+                />
+                <small class="form-error" id="nome-error" aria-live="polite"></small>
               </div>
               <div class="form-group">
                 <label class="form-label" for="cargo">Cargo</label>
-                <input class="form-input" type="text" id="cargo" name="cargo" placeholder="Ex.: Diretor(a) clínico(a)" />
+                <input
+                  class="form-input"
+                  type="text"
+                  id="cargo"
+                  name="cargo"
+                  autocomplete="organization-title"
+                  placeholder="Ex.: Diretor(a) clínico(a)"
+                />
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label" for="email">E-mail corporativo <span class="required">*</span></label>
-                <input class="form-input" type="email" id="email" name="email" required />
+                <label class="form-label" for="email">E-mail corporativo <span class="required" aria-label="obrigatório">*</span></label>
+                <input
+                  class="form-input"
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  aria-describedby="email-error"
+                />
+                <small class="form-error" id="email-error" aria-live="polite"></small>
               </div>
               <div class="form-group">
-                <label class="form-label" for="telefone">Telefone <span class="required">*</span></label>
-                <input class="form-input" type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required />
+                <label class="form-label" for="telefone">Telefone <span class="required" aria-label="obrigatório">*</span></label>
+                <input
+                  class="form-input"
+                  type="tel"
+                  id="telefone"
+                  name="telefone"
+                  required
+                  autocomplete="tel"
+                  placeholder="(11) 99999-9999"
+                  aria-describedby="telefone-error"
+                />
+                <small class="form-error" id="telefone-error" aria-live="polite"></small>
               </div>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="clinica">Nome da clínica <span class="required">*</span></label>
-              <input class="form-input" type="text" id="clinica" name="clinica" required />
+              <label class="form-label" for="clinica">Nome da clínica <span class="required" aria-label="obrigatório">*</span></label>
+              <input
+                class="form-input"
+                type="text"
+                id="clinica"
+                name="clinica"
+                required
+                autocomplete="organization"
+                aria-describedby="clinica-error"
+              />
+              <small class="form-error" id="clinica-error" aria-live="polite"></small>
             </div>
 
             <div class="form-group">
@@ -468,15 +542,32 @@
 
             <div class="form-group">
               <label class="form-label" for="mensagem">Mensagem (opcional)</label>
-              <textarea class="form-textarea" id="mensagem" name="mensagem" placeholder="Conte um pouco sobre sua clínica e o que está buscando."></textarea>
+              <textarea
+                class="form-textarea"
+                id="mensagem"
+                name="mensagem"
+                placeholder="Conte um pouco sobre sua clínica e o que está buscando."
+              ></textarea>
             </div>
 
-            <label class="form-checkbox">
-              <input type="checkbox" required />
-              <span>Li e aceito a <a href="#">Política de Privacidade</a> e autorizo o contato da equipe HSS.</span>
+            <label class="form-checkbox" for="consentimento">
+              <input
+                type="checkbox"
+                id="consentimento"
+                name="consentimento"
+                required
+                aria-describedby="consentimento-error"
+              />
+              <span>Li e aceito a <a href="#">Política de Privacidade</a> e autorizo o contato da equipe HSS. <span class="required" aria-label="obrigatório">*</span></span>
             </label>
+            <small class="form-error" id="consentimento-error" aria-live="polite"></small>
 
-            <button type="submit" class="btn btn--primary btn--full btn--lg">Quero conhecer a HSS</button>
+            <!-- Status global do envio -->
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+
+            <button type="submit" class="btn btn--primary btn--full btn--lg" id="submitBtn">
+              Quero conhecer a HSS
+            </button>
           </form>
         </div>
       </div>
@@ -570,19 +661,126 @@
       });
     })();
 
-    // Lead form — placeholder handler (no real backend in this phase)
+    // Lead form — Formspree integration with accessible UX
     (function () {
       const form = document.getElementById("leadForm");
       if (!form) return;
 
-      form.addEventListener("submit", (event) => {
+      const status = document.getElementById("formStatus");
+      const submitBtn = document.getElementById("submitBtn");
+      const submitLabel = submitBtn.textContent.trim();
+
+      // Mensagens de erro em português pra cada tipo de validação
+      function getErrorMessage(field) {
+        const validity = field.validity;
+        if (validity.valueMissing) {
+          if (field.type === "checkbox") return "É necessário aceitar a Política de Privacidade.";
+          return "Este campo é obrigatório.";
+        }
+        if (validity.typeMismatch && field.type === "email") return "Informe um e-mail válido.";
+        if (validity.tooShort) return `Mínimo de ${field.minLength} caracteres.`;
+        if (validity.patternMismatch) return "Formato inválido.";
+        return field.validationMessage || "Valor inválido.";
+      }
+
+      function setFieldError(field, message) {
+        field.setAttribute("aria-invalid", "true");
+        const errorId = field.getAttribute("aria-describedby");
+        if (errorId) {
+          const el = document.getElementById(errorId);
+          if (el) el.textContent = message;
+        }
+      }
+
+      function clearFieldError(field) {
+        field.removeAttribute("aria-invalid");
+        const errorId = field.getAttribute("aria-describedby");
+        if (errorId) {
+          const el = document.getElementById(errorId);
+          if (el) el.textContent = "";
+        }
+      }
+
+      function setStatus(message, state) {
+        status.textContent = message;
+        if (state) {
+          status.setAttribute("data-state", state);
+        } else {
+          status.removeAttribute("data-state");
+        }
+      }
+
+      function setLoading(isLoading) {
+        submitBtn.setAttribute("aria-busy", String(isLoading));
+        submitBtn.disabled = isLoading;
+      }
+
+      // Limpa erro do campo enquanto o usuário corrige
+      form.addEventListener("input", (e) => {
+        const t = e.target;
+        if (t.matches("input, select, textarea") && t.checkValidity()) {
+          clearFieldError(t);
+        }
+      });
+
+      form.addEventListener("submit", async (event) => {
         event.preventDefault();
-        if (!form.checkValidity()) {
-          form.reportValidity();
+
+        // Valida todos os campos required
+        const fields = form.querySelectorAll("[required]");
+        let firstInvalid = null;
+
+        fields.forEach((field) => {
+          if (!field.checkValidity()) {
+            setFieldError(field, getErrorMessage(field));
+            if (!firstInvalid) firstInvalid = field;
+          } else {
+            clearFieldError(field);
+          }
+        });
+
+        if (firstInvalid) {
+          setStatus("Por favor, corrija os campos destacados antes de enviar.", "error");
+          firstInvalid.focus();
           return;
         }
-        alert("Obrigado! Recebemos sua solicitação e entraremos em contato em até 1 dia útil.");
-        form.reset();
+
+        // Tudo válido — envia pro Formspree
+        setLoading(true);
+        setStatus("Enviando sua solicitação…", "loading");
+
+        try {
+          const formData = new FormData(form);
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" },
+          });
+
+          if (response.ok) {
+            setStatus(
+              "Recebemos sua solicitação! Nossa equipe entrará em contato em até 1 dia útil.",
+              "success"
+            );
+            form.reset();
+            // Volta o foco pro título do form pra o leitor de tela anunciar a mudança
+            document.getElementById("leadFormTitle").focus();
+          } else {
+            const data = await response.json().catch(() => ({}));
+            const message =
+              (data.errors && data.errors[0] && data.errors[0].message) ||
+              "Não conseguimos enviar sua solicitação agora. Tente novamente em instantes.";
+            setStatus(message, "error");
+          }
+        } catch (err) {
+          setStatus(
+            "Erro de conexão. Verifique sua internet e tente novamente.",
+            "error"
+          );
+        } finally {
+          setLoading(false);
+          submitBtn.textContent = submitLabel;
+        }
       });
     })();
   </script>
